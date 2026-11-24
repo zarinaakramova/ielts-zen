@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090d1b">
+<title>IELTS ZEN — Learn with clarity</title>
+<style>
+:root{
+  --bg:#090d1b;--panel:#11182b;--line:#26314d;
+  --text:#f4f6ff;--muted:#9aa6c2;--purple:#9274ff;--cyan:#55d6d0;
+  --shadow:0 18px 55px #0005;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 80% 0%,#25204b 0,transparent 34%),var(--bg);color:var(--text);font:15px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+h1,h2,h3{margin:0}
+.muted{color:var(--muted)}
+.tiny{font-size:11px;color:var(--muted)}
+
+/* Layout */
+.app{display:grid;grid-template-columns:250px 1fr;min-height:100vh}
+.sidebar{background:#0b1020f2;border-right:1px solid var(--line);padding:25px 17px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;z-index:5;overflow-y:auto}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 9px 27px;font-size:19px;font-weight:850;letter-spacing:.4px}
+.logo{width:37px;height:37px;border-radius:12px;background:linear-gradient(135deg,var(--purple),#55c9d7);display:grid;place-items:center;color:#fff;font-weight:900;box-shadow:0 8px 25px #9274ff55}
+.brand span{color:var(--purple)}
+.nav-label{color:#687695;text-transform:uppercase;font-size:10px;letter-spacing:1.7px;padding:15px 11px 8px;font-weight:800}
+.nav{display:grid;gap:5px}
+.nav button{border:0;background:transparent;color:var(--muted);padding:11px 12px;border-radius:11px;text-align:left;display:flex;align-items:center;gap:12px;transition:.2s}
+.nav button:hover,.nav button.active{background:#1b2340;color:#fff}
+.nav button.active{box-shadow:inset 3px 0 var(--purple)}
+.nav .ico{width:21px;text-align:center;font-size:17px}
+.side-bottom{margin-top:auto;background:linear-gradient(145deg,#211d45,#14243b);border:1px solid #3b3769;border-radius:16px;padding:16px}
+.side-bottom p{font-size:12px;color:var(--muted);margin:5px 0 12px}
+.side-bottom button{width:100%;border:0;border-radius:9px;padding:9px;background:var(--purple);color:#fff;font-weight:750}
+main{min-width:0;padding:27px clamp(18px,4vw,48px) 55px;max-width:1500px;width:100%;margin:auto}
+.topbar{display:flex;justify-content:space-between;align-items:center;gap:15px;margin-bottom:30px}
+.eyebrow{color:var(--cyan);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;font-weight:800;margin-bottom:6px}
+.topbar h1{font-size:clamp(24px,4vw,34px)}
+.sub{margin:4px 0 0;color:var(--muted)}
+.profile{display:flex;align-items:center;gap:10px}
+.avatar{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--cyan));display:grid;place-items:center;font-weight:800}
+.profile-name b{display:block;font-size:13px}
+.profile-name small{color:var(--muted);font-size:11px}
+
+/* Cards & grids */
+.card{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:16px}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:12px}
+.stat-num{font-size:28px;font-weight:800;margin:8px 0 2px}
+.stat-note{font-size:11px;color:var(--muted)}
+.hero{display:grid;grid-template-columns:1.5fr 1fr;gap:16px;margin-top:16px}
+.hero-main{background:linear-gradient(135deg,#2a2160,#14355a);border:1px solid #3b3769;border-radius:18px;padding:30px;box-shadow:var(--shadow)}
+.hero-main h2{font-size:28px;margin:6px 0 10px}
+.hero-main p{color:#c9d2ee;max-width:520px}
+.ring-wrap{display:flex;align-items:center;gap:16px;margin-top:14px}
+.ring{width:84px;height:84px;border-radius:50%;border:8px solid #2a3450;border-top-color:var(--purple);display:grid;place-items:center}
+.ring strong{font-size:16px}
+button.primary{border:0;background:var(--purple);color:#fff;padding:11px 18px;border-radius:11px;font-weight:700;margin-top:14px;transition:.2s}
+button.primary:hover{filter:brightness(1.1)}
+button.secondary{border:1px solid #3a4563;background:#1b2540;color:#dfe4ff;padding:10px 16px;border-radius:11px;transition:.2s}
+button.secondary:hover{border-color:var(--purple)}
+.section{margin-top:29px}
+.section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;gap:12px}
+.skills{grid-template-columns:repeat(4,minmax(0,1fr))}
+.skill{cursor:pointer;transition:.2s}
+.skill:hover{transform:translateY(-3px);border-color:#6e60b4}
+.skill-ico{font-size:23px;margin-bottom:12px}
+.skill p{font-size:12px;color:var(--muted);margin:5px 0 13px}
+.progress{height:6px;background:#2a3450;border-radius:20px;overflow:hidden}
+.progress span{display:block;height:100%;background:linear-gradient(90deg,var(--purple),var(--cyan));border-radius:20px}
+.skill-foot{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-top:7px}
+.lower{grid-template-columns:1.2fr .8fr}
+.task{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #25304a}
+.task:last-child{border:0}
+.task-icon{width:37px;height:37px;border-radius:11px;background:#222849;display:grid;place-items:center}
+.task-info{flex:1}
+.task-info b{font-size:13px}
+.task-info small{display:block;color:var(--muted);font-size:11px}
+.task button{border:1px solid #3a4563;background:#1b2540;color:#dfe4ff;border-radius:8px;padding:7px 10px;font-size:11px}
+
+/* Pages */
+.page{display:none}
+.page.active{display:block}
+.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:18px 0}
+input,textarea,select{background:#0c1325;color:var(--text);border:1px solid #303c5b;border-radius:10px;padding:11px 12px;outline:none;width:100%}
+input:focus,textarea:focus,select:focus{border-color:var(--purple);box-shadow:0 0 0 3px #9274ff20}
+textarea{min-height:180px;resize:vertical}
+input[type=radio]{width:auto;margin-right:8px}
+.word-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.word{background:#141d32;border:1px solid var(--line);padding:16px;border-radius:14px}
+.word strong{font-size:17px;color:#c4b6ff}
+.word p{margin:5px 0;color:var(--muted);font-size:13px}
+.tag{display:inline-block;border-radius:20px;background:#29254b;color:#c7bbff;padding:3px 8px;font-size:10px;margin-top:6px}
+.question{padding:16px;border:1px solid var(--line);border-radius:13px;margin:10px 0;background:#121a2d}
+.question label{display:block;margin:8px 0;color:#d7def3;cursor:pointer}
+.result{padding:13px;border-radius:11px;background:#172d32;color:#9fe8c2;margin-top:12px}
+.footer{text-align:center;color:#667391;font-size:11px;margin-top:35px}
+.mobile-menu{display:none}
+.r2m{background:transparent;color:inherit;transition:background .2s}
+.r2m.on{background:#ffe14d;color:#1a1a1a;border-radius:3px;padding:1px 2px;box-shadow:0 0 0 2px #ffe14d}
+.r2exp{margin-top:8px;padding:10px 12px;border-radius:10px;background:#1a2340;color:#d7def3;font-size:13px;line-height:1.55}
+
+@media(max-width:950px){
+  .app{grid-template-columns:210px 1fr}
+  .stats,.skills{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .app{display:block}
+  .sidebar{position:fixed;left:-270px;width:250px;transition:.25s;box-shadow:var(--shadow)}
+  .sidebar.open{left:0}
+  .mobile-menu{display:inline-grid;place-items:center;background:#19223b;border:1px solid var(--line);color:#fff;border-radius:9px;width:39px;height:39px}
+  .topbar{align-items:flex-start}
+  .profile-name{display:none}
+  main{padding:18px 15px 40px}
+  .hero,.lower{grid-template-columns:1fr}
+  .stats{gap:10px}
+  .card{padding:15px}
+  .stat-num{font-size:23px}
+  .word-list{grid-template-columns:1fr}
+}
+@media(max-width:400px){
+  .hero-main{padding:20px}
+  .hero-main h2{font-size:21px}
+}
+
+/* Account and role dashboards */
+#zenAuth[hidden]{display:none!important}
+#zenAuth{position:fixed;inset:0;z-index:1000;background:rgba(4,8,20,.94);display:grid;place-items:center;padding:18px;backdrop-filter:blur(12px)}
+#zenAuth .auth-card{width:min(440px,100%);background:#11182b;border:1px solid #344064;border-radius:22px;padding:25px;box-shadow:0 25px 80px #0009}
+#zenAuth h2{font-size:25px;margin-bottom:6px}#zenAuth p{color:#9aa6c2;font-size:13px;margin-bottom:18px}
+#zenAuth label{display:block;color:#aab5d0;font-size:12px;margin:10px 0 5px}
+#zenAuth input{width:100%;padding:12px;border-radius:10px;border:1px solid #344064;background:#0b1224;color:#fff;outline:none}
+#zenAuth .auth-actions{display:flex;gap:9px;margin-top:16px;flex-wrap:wrap}#zenAuth button{border:0;border-radius:10px;padding:11px 15px;background:#9274ff;color:white;font-weight:750}
+#zenAuth button.alt{background:#26314d;color:#dce3ff}#zenAuth .auth-error{color:#ffaaa8;min-height:20px;font-size:12px;margin-top:10px}
+.zen-role-panel{margin:20px 0;padding:20px;background:#11182b;border:1px solid #344064;border-radius:17px;overflow:auto}
+.zen-role-panel table{width:100%;border-collapse:collapse;font-size:12px;min-width:650px}.zen-role-panel th,.zen-role-panel td{padding:10px;border-bottom:1px solid #293451;text-align:left;vertical-align:top}.zen-role-panel th{color:#9aa6c2}
+.zen-role-panel input,.zen-role-panel select{background:#0b1224;color:white;border:1px solid #344064;border-radius:8px;padding:8px;max-width:150px}
+.zen-role-panel button{background:#9274ff;color:white;border:0;border-radius:8px;padding:8px 10px;margin:2px;font-size:12px}
+#zenRoleNav{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}#zenRoleNav button{background:#26314d;color:white;border:1px solid #455276;border-radius:9px;padding:8px 12px}
+#zenRoleNav button.logout{background:#6e2937;border-color:#8b3d4d}
+
+</style>
+</head>
+<body>
+
+<div id="zenAuth">
+ <div class="auth-card">
+  <div class="brand" style="padding:0 0 16px"><div class="logo">Z</div> IELTS <span>ZEN</span></div>
+  <h2 id="zenAuthTitle">Welcome back</h2><p id="zenAuthHint">Sign in to access your personal IELTS workspace.</p>
+  <form id="zenLoginForm">
+   <label>Email or username</label><input id="zenIdentifier" autocomplete="username" required>
+   <label>Password</label><input id="zenPassword" type="password" autocomplete="current-password" required>
+   <div class="auth-actions"><button type="submit">Sign in</button><button type="button" class="alt" id="zenShowRegister">Create student account</button></div>
+  </form>
+  <form id="zenRegisterForm" hidden>
+   <label>Full name</label><input id="zenFullName" required maxlength="120">
+   <label>Username</label><input id="zenUsername" required maxlength="60" autocomplete="username">
+   <label>Email</label><input id="zenEmail" type="email" required autocomplete="email">
+   <label>Target IELTS band</label><input id="zenTarget" type="number" min="0" max="9" step="0.5" value="7">
+   <label>Password (at least 10 characters)</label><input id="zenNewPassword" type="password" minlength="10" required autocomplete="new-password">
+   <div class="auth-actions"><button type="submit">Create account</button><button type="button" class="alt" id="zenShowLogin">Back to sign in</button></div>
+  </form>
+  <div class="auth-error" id="zenAuthError" role="alert"></div>
+  <div style="font-size:11px;color:#7785a6;margin-top:12px">Secure account access · IELTS ZEN</div>
+ </div>
+</div>
+
+<div class="app">
+
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="logo">Z</div> IELTS <span>ZEN</span></div>
+  <div class="nav-label">Workspace</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">🏠</span> Dashboard</button>
+    <button data-page="listening"><span class="ico">🎧</span> Listening</button>
+    <button data-page="reading"><span class="ico">📖</span> Reading</button>
+    <button data-page="writing"><span class="ico">✍️</span> Writing</button>
+    <button data-page="speaking"><span class="ico">🗣️</span> Speaking</button>
+  </nav>
+  <div class="nav-label">Study tools</div>
+  <nav class="nav">
+    <button data-page="reading2"><span class="ico">🔒</span> Reading Test 2</button>
+    <button data-page="vocabulary"><span class="ico">📚</span> Vocabulary</button>
+    <button data-page="flashcards"><span class="ico">🃏</span> Flashcards</button>
+    <button data-page="mocktest"><span class="ico">⏱️</span> Mock test</button>
+    <button data-page="progress"><span class="ico">📈</span> My progress</button>
+  </nav>
+  <div class="side-bottom"><b>Small steps. Big scores.</b><p>Consistency is the key to your IELTS journey.</p><button data-page="vocabulary">Study vocabulary</button></div>
+</aside>
+
+<main>
+<header class="topbar">
+  <div style="display:flex;gap:12px;align-items:flex-start">
+    <button class="mobile-menu" id="menuBtn" aria-label="Open menu">☰</button>
+    <div>
+      <div class="eyebrow">YOUR PERSONAL IELTS SPACE</div>
+      <h1 id="pageTitle">Welcome back 👋</h1>
+      <p class="sub" id="pageSubtitle">A little progress every day adds up to big results.</p>
+    </div>
+  </div>
+  <div class="profile"><div class="avatar">Z</div><div class="profile-name"><b>IELTS Learner</b><small>Target band: 8.0+</small></div></div>
+</header>
+
+<!-- DASHBOARD -->
+<section class="page active" id="dashboard">
+  <div class="grid stats">
+    <div class="card"><div class="stat-top">Study streak <span>🔥</span></div><div class="stat-num" id="streak">1 day</div><div class="stat-note">Keep your momentum going</div></div>
+    <div class="card"><div class="stat-top">Words learned <span>📚</span></div><div class="stat-num" id="wordsCount">0</div><div class="stat-note">Saved in your vocabulary</div></div>
+    <div class="card"><div class="stat-top">Tasks completed <span>✅</span></div><div class="stat-num" id="tasksCount">0</div><div class="stat-note">Every task makes a difference</div></div>
+    <div class="card"><div class="stat-top">Study time <span>⏱️</span></div><div class="stat-num" id="studyTime">0 min</div><div class="stat-note">Time spent in this session</div></div>
+  </div>
+
+  <div class="hero">
+    <div class="hero-main">
+      <div class="eyebrow">YOUR NEXT MILESTONE</div>
+      <h2>Build confidence. Reach your target band.</h2>
+      <p>Practise all four IELTS skills, expand your vocabulary and track your learning journey in one place.</p>
+      <button class="primary" data-page="mocktest">Start a quick test →</button>
+    </div>
+    <div class="card hero-side">
+      <h3>Today's learning goal</h3>
+      <div class="ring-wrap"><div class="ring"><strong id="goalPercent">0%</strong></div><div><b id="goalText">0 of 3 tasks</b><p class="tiny">Complete today's study plan</p></div></div>
+      <button class="secondary" style="margin-top:16px" data-page="progress">View progress</button>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-head"><h2>Explore your skills</h2><span class="tiny">Choose a module to begin</span></div>
+    <div class="grid skills">
+      <div class="card skill" data-page="listening"><div class="skill-ico">🎧</div><h3>Listening</h3><p>Practise comprehension and note-taking.</p><div class="progress"><span style="width:35%"></span></div><div class="skill-foot"><span>Practice module</span><span>→</span></div></div>
+      <div class="card skill" data-page="reading"><div class="skill-ico">📖</div><h3>Reading</h3><p>Build speed, accuracy and skimming skills.</p><div class="progress"><span style="width:45%"></span></div><div class="skill-foot"><span>Practice module</span><span>→</span></div></div>
+      <div class="card skill" data-page="writing"><div class="skill-ico">✍️</div><h3>Writing</h3><p>Plan and develop clear, coherent essays.</p><div class="progress"><span style="width:25%"></span></div><div class="skill-foot"><span>Practice module</span><span>→</span></div></div>
+      <div class="card skill" data-page="speaking"><div class="skill-ico">🗣️</div><h3>Speaking</h3><p>Explore questions and structure your ideas.</p><div class="progress"><span style="width:55%"></span></div><div class="skill-foot"><span>Practice module</span><span>→</span></div></div>
+    </div>
+  </div>
+
+  <div class="section grid lower">
+    <div class="card">
+      <div class="section-head"><h2>Recommended for you</h2><span class="tiny">Study plan</span></div>
+      <div class="task"><div class="task-icon">📚</div><div class="task-info"><b>Learn 5 advanced words</b><small>Vocabulary · 10 minutes</small></div><button data-page="vocabulary">Start</button></div>
+      <div class="task"><div class="task-icon">🗣️</div><div class="task-info"><b>Answer a Part 1 question</b><small>Speaking · 5 minutes</small></div><button data-page="speaking">Start</button></div>
+      <div class="task"><div class="task-icon">✍️</div><div class="task-info"><b>Write an essay introduction</b><small>Writing · 15 minutes</small></div><button data-page="writing">Start</button></div>
+    </div>
+    <div class="card">
+      <h2>Zen reminder 🌿</h2>
+      <p style="font-size:17px;line-height:1.6">“Great things are done by a series of small things brought together.”</p>
+      <p class="tiny">Focus on progress, not perfection.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LISTENING -->
+<section class="page" id="listening">
+  <div class="card">
+    <div class="eyebrow">SKILL 01</div><h2>Listening practice</h2>
+    <p class="muted">Train yourself to identify key information, details and paraphrases.</p>
+    <h3 style="margin-top:22px">Practice exercise: Campus announcement</h3>
+    <p class="muted">Read the short transcript and answer the questions. In a full IELTS test, you would listen to an audio recording.</p>
+    <div class="question"><b>Transcript</b>
+      <p>Good morning, everyone. The student library will be closed on Monday for maintenance. It will reopen on Tuesday at 9 a.m. Students can return borrowed books using the drop box near the main entrance. The computer room will remain open as usual.</p>
+    </div>
+    <div class="question"><b>1. On which day will the library reopen?</b>
+      <label><input type="radio" name="l1" value="Monday"> Monday</label>
+      <label><input type="radio" name="l1" value="Tuesday"> Tuesday</label>
+      <label><input type="radio" name="l1" value="Wednesday"> Wednesday</label>
+    </div>
+    <div class="question"><b>2. Where can students return books?</b>
+      <label><input type="radio" name="l2" value="Main entrance"> Near the main entrance</label>
+      <label><input type="radio" name="l2" value="Computer room"> In the computer room</label>
+      <label><input type="radio" name="l2" value="Reception"> At reception</label>
+    </div>
+    <button class="primary" onclick="checkListening()">Check answers</button>
+    <div id="listeningResult"></div>
+  </div>
+</section>
+
+<!-- READING -->
+<section class="page" id="reading">
+  <div class="card" id="readingIntro">
+    <div class="eyebrow">SKILL 02</div><h2>Reading practice test</h2>
+    <p class="muted">3 passages, 40 multiple-choice questions, 60 minutes. Your answers are saved automatically on this device.</p>
+    <ul class="muted" style="line-height:1.9">
+      <li>Passage 1: questions 1–13</li>
+      <li>Passage 2: questions 14–26</li>
+      <li>Passage 3: questions 27–40</li>
+    </ul>
+    <button class="primary" onclick="startReading()">Start Reading test →</button>
+  </div>
+
+  <div id="readingResult"></div>
+
+  <div id="readingExam" style="display:none">
+    <div class="card" style="position:sticky;top:10px;z-index:3;padding:14px 18px">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <div><div class="tiny">Time remaining</div><div class="stat-num" style="margin:0;font-size:24px" id="readingTimer">60:00</div></div>
+        <div style="flex:1;min-width:140px"><div class="tiny" id="readingAnswered">0 / 40 answered</div><div class="progress" style="margin-top:6px"><span id="readingProgress" style="width:0%"></span></div></div>
+        <button class="primary" style="margin-top:0" onclick="finishReading()">Submit test</button>
+      </div>
+    </div>
+    <div id="readingQuestions"></div>
+    <div class="toolbar"><button class="primary" style="margin-top:0" onclick="finishReading()">Submit test</button></div>
+  </div>
+</section>
+
+<!-- READING TEST 2 (locked) -->
+<section class="page" id="reading2">
+  <div class="card" id="r2Lock" style="max-width:520px;margin:auto;text-align:center">
+    <div style="font-size:38px">🔒</div>
+    <h2 style="margin-top:8px">Reading Test 2</h2>
+    <p class="muted">This test is protected. Enter the access code to continue.</p>
+    <div class="toolbar" style="justify-content:center;flex-wrap:nowrap">
+      <input id="r2Code" type="password" placeholder="Access code" autocomplete="off" style="max-width:240px" onkeydown="if(event.key==='Enter')r2Unlock()">
+      <button class="primary" style="margin-top:0" onclick="r2Unlock()">Unlock</button>
+    </div>
+    <div id="r2LockMsg" class="tiny"></div>
+  </div>
+
+  <div id="r2Main" style="display:none">
+    <div class="card" id="r2Intro">
+      <div class="eyebrow">FULL TEST · ACADEMIC FORMAT</div><h2>Reading Test 2</h2>
+      <p class="muted">3 passages, 40 questions, 60 minutes. Question types: True / False / Not Given, Yes / No / Not Given, notes completion, matching, multiple choice and sentence endings. Your answers are saved automatically on this device.</p>
+      <ul class="muted" style="line-height:1.9">
+        <li>Passage 1 — The Olmec and their great stone heads (questions 1–13)</li>
+        <li>Passage 2 — The Return of the Black-footed Ferret (questions 14–26)</li>
+        <li>Passage 3 — Marine mammals exhibit their ingenuity (questions 27–40)</li>
+      </ul>
+      <button class="primary" onclick="r2Start()">Start Reading test →</button>
+    </div>
+
+    <div id="r2Exam" style="display:none">
+      <div class="card" style="position:sticky;top:10px;z-index:3;padding:14px 18px">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div><div class="tiny">Time remaining</div><div class="stat-num" style="margin:0;font-size:24px" id="r2Timer">60:00</div></div>
+          <div style="flex:1;min-width:140px"><div class="tiny" id="r2Answered">0 / 40 answered</div><div class="progress" style="margin-top:6px"><span id="r2Progress" style="width:0%"></span></div></div>
+          <button class="primary" style="margin-top:0" onclick="r2Finish()">Submit test</button>
+        </div>
+      </div>
+      <div id="r2Result"></div>
+      <div id="r2Body"></div>
+      <div class="toolbar"><button class="primary" style="margin-top:0" onclick="r2Finish()">Submit test</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- WRITING -->
+<section class="page" id="writing">
+  <div class="card">
+    <div class="eyebrow">SKILL 03</div><h2>Writing workspace</h2>
+    <p class="muted">Plan, draft and review your IELTS response. Your draft is saved on this device.</p>
+    <label class="tiny" for="essayTask">Choose a task</label>
+    <select id="essayTask">
+      <option>Task 2 — Opinion essay</option>
+      <option>Task 2 — Discussion essay</option>
+      <option>Task 1 — Academic chart report</option>
+      <option>Task 1 — General letter</option>
+    </select>
+    <div class="question"><b>Practice question</b>
+      <p>Some people believe that online education is more effective than traditional classroom learning. To what extent do you agree or disagree?</p>
+    </div>
+    <textarea id="essay" placeholder="Write your response here..."></textarea>
+    <div class="section-head" style="margin-top:12px">
+      <span class="tiny" id="wordCount">0 words</span>
+      <div style="display:flex;gap:8px"><button class="secondary" onclick="clearEssay()">Clear</button><button class="primary" style="margin-top:0" onclick="saveEssay()">Save draft</button></div>
+    </div>
+    <div id="essayMessage" class="tiny"></div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section class="page" id="speaking">
+  <div class="card">
+    <div class="eyebrow">SKILL 04</div><h2>Speaking practice</h2>
+    <p class="muted">Develop fluent, well-organised answers with relevant examples.</p>
+    <label class="tiny" for="partSelect">Choose a speaking part</label>
+    <select id="partSelect" onchange="newSpeakingQuestion()">
+      <option value="1">Part 1 — Interview</option>
+      <option value="2">Part 2 — Long turn</option>
+      <option value="3">Part 3 — Discussion</option>
+    </select>
+    <div class="question">
+      <div class="eyebrow">YOUR QUESTION</div>
+      <h3 id="speakQuestion">Do you enjoy learning new things?</h3>
+      <button class="secondary" style="margin-top:12px" onclick="newSpeakingQuestion()">Next question 🔄</button>
+    </div>
+    <textarea id="speakingAnswer" placeholder="Plan or write your answer here..."></textarea>
+    <div class="section-head" style="margin-top:12px"><span class="tiny" id="speakWords">0 words</span><button class="primary" style="margin-top:0" onclick="saveSpeaking()">Save answer</button></div>
+    <div id="speakingMessage" class="tiny"></div>
+  </div>
+</section>
+
+<!-- VOCABULARY -->
+<section class="page" id="vocabulary">
+  <div class="card">
+    <div class="eyebrow">STUDY TOOLS</div><h2>Advanced vocabulary</h2>
+    <p class="muted">Useful words for IELTS Speaking and Writing. Save words to revise later.</p>
+    <div class="toolbar">
+      <input id="wordSearch" placeholder="Search a word..." oninput="renderWords()">
+      <select id="levelFilter" onchange="renderWords()" style="max-width:150px">
+        <option value="All">All levels</option><option value="C1">C1</option><option value="C2">C2</option>
+      </select>
+    </div>
+    <div class="word-list" id="wordList"></div>
+    <div class="section">
+      <h3>Add your own word</h3>
+      <div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px">
+        <input id="newWord" placeholder="Word or phrase">
+        <input id="newMeaning" placeholder="Meaning in English">
+      </div>
+      <div class="toolbar">
+        <select id="newLevel" style="max-width:130px"><option>C1</option><option>C2</option></select>
+        <button class="primary" style="margin-top:0" onclick="addWord()">Add to vocabulary</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLASHCARDS -->
+<section class="page" id="flashcards">
+  <div class="card" style="max-width:700px;margin:auto;text-align:center">
+    <div class="eyebrow">MEMORY TRAINING</div><h2>Vocabulary flashcards</h2>
+    <p class="muted">Try to remember the meaning before revealing it.</p>
+    <div class="question" style="padding:45px 20px;margin:25px 0">
+      <div class="tiny" id="flashIndex">CARD 1</div>
+      <h2 id="flashWord" style="font-size:32px;color:#c5b7ff;margin:18px 0">Substantial</h2>
+      <p id="flashMeaning" class="muted" style="display:none"></p>
+      <button class="secondary" id="revealBtn" onclick="revealCard()">Reveal meaning</button>
+    </div>
+    <div style="display:flex;justify-content:center;gap:10px">
+      <button class="secondary" onclick="prevCard()">← Previous</button>
+      <button class="primary" style="margin-top:0" onclick="nextCard()">Next card →</button>
+    </div>
+  </div>
+</section>
+
+<!-- MOCK TEST -->
+<section class="page" id="mocktest">
+  <div class="card">
+    <div class="eyebrow">EXAM SIMULATOR</div><h2>Quick IELTS-style test</h2>
+    <p class="muted">A short practice quiz to check your reading and vocabulary skills. This is not an official IELTS test.</p>
+    <div class="grid" style="grid-template-columns:1fr auto;align-items:center;margin:18px 0">
+      <div><b>Time remaining</b><div class="tiny">Suggested time: 5 minutes</div></div>
+      <div class="stat-num" id="timer">05:00</div>
+    </div>
+    <div class="question"><b>1. Choose the closest meaning of “mitigate”.</b>
+      <label><input type="radio" name="m1" value="A"> To make something less severe</label>
+      <label><input type="radio" name="m1" value="B"> To make something more complex</label>
+      <label><input type="radio" name="m1" value="C"> To completely ignore something</label>
+    </div>
+    <div class="question"><b>2. The word “ubiquitous” means...</b>
+      <label><input type="radio" name="m2" value="A"> Very rare</label>
+      <label><input type="radio" name="m2" value="B"> Present or found everywhere</label>
+      <label><input type="radio" name="m2" value="C"> Difficult to understand</label>
+    </div>
+    <div class="question"><b>3. Choose the grammatically correct sentence.</b>
+      <label><input type="radio" name="m3" value="A"> Had I known, I would have prepared earlier.</label>
+      <label><input type="radio" name="m3" value="B"> If I would know, I prepared earlier.</label>
+      <label><input type="radio" name="m3" value="C"> Had I knew, I will prepare earlier.</label>
+    </div>
+    <div class="toolbar">
+      <button class="primary" style="margin-top:0" onclick="submitMock()">Submit test</button>
+      <button class="secondary" onclick="resetMock()">Restart</button>
+    </div>
+    <div id="mockResult"></div>
+  </div>
+</section>
+
+<!-- PROGRESS -->
+<section class="page" id="progress">
+  <div class="grid stats" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+    <div class="card"><div class="stat-top">Vocabulary saved</div><div class="stat-num" id="pWords">0</div><div class="tiny">Words in your personal list</div></div>
+    <div class="card"><div class="stat-top">Tasks completed</div><div class="stat-num" id="pTasks">0</div><div class="tiny">Practice activities completed</div></div>
+    <div class="card"><div class="stat-top">Study time</div><div class="stat-num" id="pTime">0 min</div><div class="tiny">Current session</div></div>
+  </div>
+  <div class="card section">
+    <h2>Your learning habits</h2>
+    <p class="muted">Your activity is stored locally in this browser. It is not sent to a server.</p>
+    <div class="progress" style="height:12px;margin:18px 0"><span id="overallBar" style="width:0%"></span></div>
+    <b id="overallText">Start practising to build your progress.</b>
+    <div class="toolbar"><button class="secondary" onclick="resetProgress()">Reset local progress</button></div>
+  </div>
+</section>
+
+<div class="footer">IELTS ZEN · Learn with clarity, practise with purpose.</div>
+
+<div id="zenRoleNav" hidden><span id="zenSignedAs" style="color:#aab5d0;font-size:12px;align-self:center"></span><button id="zenRefreshRole">Refresh panel</button><button id="zenLogout" class="logout">Sign out</button></div>
+<section id="zenAdminPanel" class="zen-role-panel" hidden>
+ <h2>Admin control centre</h2><p class="muted" style="margin:6px 0 15px">Accounts, activity monitoring and platform statistics.</p>
+ <div id="zenAdminStats" class="grid stats" style="grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:18px"></div>
+ <h3>Create account</h3><form id="zenCreateUser" style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0"><input name="fullName" placeholder="Full name" required><input name="username" placeholder="Username" required><input name="email" type="email" placeholder="Email" required><input name="password" type="password" placeholder="Temporary password (10+ chars)" minlength="10" required><select name="role"><option value="student">Student</option><option value="teacher">Teacher</option><option value="admin">Admin</option></select><button>Create</button></form>
+ <h3>Users</h3><div style="overflow:auto"><table><thead><tr><th>User</th><th>Role</th><th>Status</th><th>Last login</th><th>Last active</th><th>Attempts / Avg band</th><th>Action</th></tr></thead><tbody id="zenAdminUsers"></tbody></table></div>
+ <h3 style="margin-top:22px">Activity log</h3><div style="overflow:auto"><table><thead><tr><th>Time</th><th>User</th><th>Role</th><th>Action</th><th>Description</th></tr></thead><tbody id="zenAdminLogs"></tbody></table></div>
+</section>
+<section id="zenTeacherPanel" class="zen-role-panel" hidden><h2>Teacher workspace</h2><p class="muted" style="margin:6px 0 15px">Assigned students and submitted work.</p><h3>Students</h3><div style="overflow:auto"><table><thead><tr><th>Student</th><th>Username</th><th>Target band</th><th>Presence</th><th>Last active</th></tr></thead><tbody id="zenTeacherStudents"></tbody></table></div><h3 style="margin-top:22px">Submissions to review</h3><div style="overflow:auto"><table><thead><tr><th>Student</th><th>Skill / Test</th><th>Submitted</th><th>Score</th><th>Band</th><th>Feedback</th><th>Save review</th></tr></thead><tbody id="zenTeacherAttempts"></tbody></table></div></section>
+<section id="zenStudentHistory" class="zen-role-panel" hidden><h3>My saved test results</h3><div style="overflow:auto"><table><thead><tr><th>Date</th><th>Skill</th><th>Test</th><th>Score</th><th>Band</th><th>Teacher feedback</th></tr></thead><tbody id="zenStudentAttempts"></tbody></table></div></section>
+
+</main>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+
+// Safe localStorage helpers
+const store = {
+  get(k, d){ try { const v = localStorage.getItem(k); return v === null ? d : v; } catch(e){ return d; } },
+  set(k, v){ try { localStorage.setItem(k, v); } catch(e){} },
+  del(k){ try { localStorage.removeItem(k); } catch(e){} }
+};
+
+const pages = {
+  dashboard:["Welcome back 👋","A little progress every day adds up to big results."],
+  listening:["Listening","Train your ear to catch the details."],
+  reading:["Reading","Read actively. Think critically."],
+  writing:["Writing","Turn your ideas into clear, coherent writing."],
+  speaking:["Speaking","Express your ideas with confidence."],
+  reading2:["Reading Test 2","Full-length practice test. Access code required."],
+  vocabulary:["Vocabulary","Build a precise and flexible vocabulary."],
+  flashcards:["Flashcards","Review words and strengthen your memory."],
+  mocktest:["Mock test","Challenge yourself with a timed practice quiz."],
+  progress:["My progress","See the learning milestones you have reached."]
+};
+
+let tasks = Number(store.get("zenTasks", 0)) || 0;
+let savedWords = [];
+try { savedWords = JSON.parse(store.get("zenWords", "[]")) || []; } catch(e){ savedWords = []; }
+let sessionMinutes = 0, timerInterval = null, remaining = 300, cardIndex = 0;
+
+const baseWords = [
+  ["Substantial","Large in amount, value or importance.","C1"],
+  ["Mitigate","To make something less severe or harmful.","C1"],
+  ["Ubiquitous","Present, appearing or found everywhere.","C2"],
+  ["Alleviate","To make a problem or suffering less serious.","C1"],
+  ["Deteriorate","To become progressively worse.","C1"],
+  ["Contention","An assertion or point of view maintained in an argument.","C2"],
+  ["Inevitable","Certain to happen; unavoidable.","C1"],
+  ["Discrepancy","A difference between two things that should be similar.","C2"],
+  ["Sustainable","Able to continue over time without causing harm.","C1"],
+  ["Pragmatic","Dealing with things sensibly and realistically.","C1"],
+  ["Predominantly","Mainly or for the most part.","C1"],
+  ["Exacerbate","To make a problem or negative situation worse.","C2"]
+];
+const allWords = () => [...baseWords, ...savedWords];
+
+const speakingQs = {
+  1:["Do you enjoy learning new things?","What do you usually do in your free time?","Tell me about the place where you live.","Do you prefer studying in the morning or at night?","How often do you use the internet?"],
+  2:["Describe a book you enjoyed reading. You should say what it was, who wrote it, what it was about, and explain why you liked it.","Describe a person who has influenced you. You should say who they are, how you know them, and explain how they influenced you.","Describe a place you would like to visit. You should say where it is, what you would do there, and explain why you want to go."],
+  3:["How has technology changed the way people learn?","Do you think children should learn foreign languages at school?","What are the advantages of studying abroad?","Why do some people find it hard to learn a new language?"]
+};
+
+function saveState(){
+  store.set("zenTasks", tasks);
+  store.set("zenWords", JSON.stringify(savedWords));
+  updateStats();
+}
+
+function updateStats(){
+  $("wordsCount").textContent = savedWords.length;
+  $("tasksCount").textContent = tasks;
+  $("studyTime").textContent = sessionMinutes + " min";
+  const done = Math.min(tasks, 3);
+  $("goalText").textContent = done + " of 3 tasks";
+  $("goalPercent").textContent = Math.round(done / 3 * 100) + "%";
+  $("pWords").textContent = savedWords.length;
+  $("pTasks").textContent = tasks;
+  $("pTime").textContent = sessionMinutes + " min";
+  $("overallBar").style.width = Math.min(100, tasks * 12) + "%";
+  $("overallText").textContent = tasks
+    ? `You have completed ${tasks} practice activities. Keep going!`
+    : "Start practising to build your progress.";
+}
+
+function go(page){
+  document.querySelectorAll(".page").forEach(p => p.classList.toggle("active", p.id === page));
+  document.querySelectorAll(".nav button[data-page]").forEach(b => b.classList.toggle("active", b.dataset.page === page));
+  $("pageTitle").textContent = pages[page][0];
+  $("pageSubtitle").textContent = pages[page][1];
+  $("sidebar").classList.remove("open");
+  if (page === "progress") updateStats();
+  if (page === "reading2") r2Show();
+  if (page === "vocabulary") renderWords();
+  if (page === "flashcards") showCard();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+document.addEventListener("click", e => {
+  const b = e.target.closest("[data-page]");
+  if (b) go(b.dataset.page);
+});
+$("menuBtn").addEventListener("click", () => $("sidebar").classList.toggle("open"));
+
+function completed(){ tasks++; saveState(); }
+
+/* Listening */
+function checkListening(){
+  const a = document.querySelector('input[name="l1"]:checked')?.value === "Tuesday" ? 1 : 0;
+  const b = document.querySelector('input[name="l2"]:checked')?.value === "Main entrance" ? 1 : 0;
+  const score = a + b;
+  $("listeningResult").innerHTML = `<div class="result">Your score: ${score}/2. ${score === 2 ? "Excellent work!" : "Review the transcript and try again."}</div>`;
+  if (score === 2) completed();
+}
+
+/* Vocabulary */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+function renderWords(){
+  const q = $("wordSearch").value.toLowerCase();
+  const level = $("levelFilter").value;
+  const words = allWords().filter(w =>
+    (w[0].toLowerCase().includes(q) || w[1].toLowerCase().includes(q)) &&
+    (level === "All" || w[2] === level));
+  $("wordList").innerHTML = words.map(w =>
+    `<div class="word"><strong>${escapeHtml(w[0])}</strong><p>${escapeHtml(w[1])}</p><span class="tag">${escapeHtml(w[2])}</span></div>`
+  ).join("") || '<p class="muted">No matching words found.</p>';
+}
+function addWord(){
+  const w = $("newWord").value.trim(), m = $("newMeaning").value.trim(), l = $("newLevel").value;
+  if (!w || !m){ alert("Please enter both a word and its meaning."); return; }
+  savedWords.push([w, m, l]);
+  $("newWord").value = ""; $("newMeaning").value = "";
+  saveState(); renderWords();
+}
+
+/* Writing */
+$("essay").addEventListener("input", () => {
+  const n = $("essay").value.trim().split(/\s+/).filter(Boolean).length;
+  $("wordCount").textContent = n + " words";
+});
+function saveEssay(){
+  store.set("zenEssay", $("essay").value);
+  $("essayMessage").textContent = "Draft saved on this device ✓";
+  completed();
+}
+function clearEssay(){
+  if (confirm("Clear your current essay?")){
+    $("essay").value = "";
+    $("wordCount").textContent = "0 words";
+    store.del("zenEssay");
+  }
+}
+
+/* Speaking */
+function newSpeakingQuestion(){
+  const list = speakingQs[$("partSelect").value];
+  $("speakQuestion").textContent = list[Math.floor(Math.random() * list.length)];
+}
+$("speakingAnswer").addEventListener("input", () => {
+  const n = $("speakingAnswer").value.trim().split(/\s+/).filter(Boolean).length;
+  $("speakWords").textContent = n + " words";
+});
+function saveSpeaking(){
+  store.set("zenSpeaking", $("speakingAnswer").value);
+  $("speakingMessage").textContent = "Answer saved on this device ✓";
+  completed();
+}
+
+/* Flashcards */
+function showCard(){
+  const list = allWords();
+  if (cardIndex >= list.length) cardIndex = 0;
+  const w = list[cardIndex];
+  $("flashIndex").textContent = `CARD ${cardIndex + 1} OF ${list.length}`;
+  $("flashWord").textContent = w[0];
+  $("flashMeaning").textContent = w[1];
+  $("flashMeaning").style.display = "none";
+  $("revealBtn").style.display = "inline-block";
+}
+function revealCard(){
+  $("flashMeaning").style.display = "block";
+  $("revealBtn").style.display = "none";
+}
+function nextCard(){ cardIndex = (cardIndex + 1) % allWords().length; showCard(); }
+function prevCard(){ const n = allWords().length; cardIndex = (cardIndex - 1 + n) % n; showCard(); }
+
+/* Mock test */
+function fmt(s){ return String(Math.floor(s/60)).padStart(2,"0") + ":" + String(s%60).padStart(2,"0"); }
+function startTimer(){
+  clearInterval(timerInterval);
+  timerInterval = setInterval(() => {
+    remaining--;
+    $("timer").textContent = fmt(Math.max(remaining, 0));
+    if (remaining <= 0){ clearInterval(timerInterval); submitMock(); }
+  }, 1000);
+}
+function submitMock(){
+  clearInterval(timerInterval);
+  const key = { m1:"A", m2:"B", m3:"A" };
+  let score = 0;
+  for (const k in key){
+    if (document.querySelector(`input[name="${k}"]:checked`)?.value === key[k]) score++;
+  }
+  $("mockResult").innerHTML = `<div class="result">You scored ${score}/3. ${score === 3 ? "Excellent! 🎉" : "Good effort — review the questions you missed."}</div>`;
+  completed();
+}
+function resetMock(){
+  document.querySelectorAll("#mocktest input[type=radio]").forEach(r => r.checked = false);
+  $("mockResult").innerHTML = "";
+  remaining = 300;
+  $("timer").textContent = fmt(remaining);
+  startTimer();
+}
+
+/* Progress */
+function resetProgress(){
+  if (!confirm("Reset all local progress?")) return;
+  tasks = 0; savedWords = [];
+  store.del("zenTasks"); store.del("zenWords");
+  saveState(); renderWords();
+}
+
+/* ===== Reading test ===== */
+const readingPassages = [
+{
+title:"Passage 1 — Urban Rooftop Gardens",
+text:`As cities continue to expand, the availability of green spaces has become an increasingly important issue. In densely populated areas, traditional parks are often difficult to establish because land is expensive and limited. Consequently, some urban planners have begun looking upwards.
+
+Rooftop gardens transform unused building surfaces into productive green spaces. They can provide places for relaxation, support small-scale food production and improve the appearance of urban environments. Certain plants can also absorb rainfall, reducing the pressure on drainage systems during heavy storms.
+
+Another important advantage is temperature regulation. Concrete and asphalt absorb considerable amounts of heat during the day. Vegetation can help moderate this effect by providing shade and releasing moisture into the atmosphere.
+
+However, rooftop gardens are not suitable for every building. Older structures may require additional reinforcement to support the weight of soil and water. Installation and maintenance can also be expensive. Furthermore, successful gardens require regular attention, particularly during periods of extreme weather.
+
+Despite these limitations, interest in rooftop gardening continues to grow. Some cities now offer financial incentives to building owners who introduce environmentally friendly rooftop spaces.`
+},
+{
+title:"Passage 2 — The Changing Role of Public Libraries",
+text:`Public libraries have traditionally been associated with books, reading and quiet study. For generations, they provided access to information for people who could not afford private collections. However, technological developments have significantly changed the expectations placed on these institutions.
+
+Digital resources have become an essential part of modern library services. Many libraries now provide electronic books, online journals and access to educational databases. These resources allow users to obtain information without physically visiting a library.
+
+Nevertheless, physical libraries remain valuable. They offer quiet environments for concentration, particularly for students who may not have suitable study spaces at home. Some institutions have also introduced collaborative areas where visitors can work together on projects.
+
+Libraries increasingly organise workshops and community activities. These may include language classes, computer training and career guidance sessions. Such programmes help people develop practical skills and strengthen relationships within local communities.
+
+Funding remains a major challenge. Some libraries struggle to maintain their collections while investing in modern technology. Others face difficulties attracting younger visitors, who may prefer to obtain information through digital platforms.
+
+Experts argue that successful libraries should combine traditional services with modern facilities. Their future may depend less on the number of books they contain and more on their ability to respond to changing community needs.`
+},
+{
+title:"Passage 3 — Attention in the Digital Age",
+text:`Human attention is a limited cognitive resource. Although people can process enormous amounts of information, their ability to concentrate on several demanding tasks simultaneously is restricted. The increasing availability of digital devices has made this limitation particularly relevant.
+
+Notifications, messages and online content frequently interrupt everyday activities. Each interruption may require individuals to redirect their attention, making it harder to maintain concentration on the original task. Researchers have suggested that repeated switching between activities can reduce efficiency.
+
+However, technology itself should not necessarily be considered the enemy of concentration. Digital tools can provide access to educational materials, facilitate communication and support complex research. The effect largely depends on how individuals use them.
+
+One proposed solution is to establish periods of uninterrupted work. During these periods, unnecessary notifications are disabled and attention is directed towards a single task. Some researchers refer to this approach as focused work.
+
+Environmental factors also play a significant role. Noise, poor lighting and uncomfortable surroundings may make sustained concentration more difficult. A suitable working environment can therefore support effective learning.
+
+Ultimately, developing concentration requires more than simply reducing screen time. Individuals need to understand their habits, organise their activities and create conditions that support purposeful engagement.`
+}
+];
+
+// Format: [passage (1-3), question, options, index of correct option]
+// Question numbers (1–40) are assigned automatically from the order below.
+const readingQuestions = [
+[1,"What is a major difficulty in creating traditional parks in cities?",["Limited rainfall","Expensive land","Lack of plants"],1],
+[1,"What can rooftop gardens help reduce?",["Drainage pressure","Public transport costs","Building height"],0],
+[1,"How can vegetation moderate urban temperatures?",["By producing concrete","By increasing traffic","By providing shade and releasing moisture"],2],
+[1,"Which buildings may need reinforcement?",["Older structures","New shopping centres","Underground stations"],0],
+[1,"What is necessary for successful rooftop gardens?",["No human involvement","Regular maintenance","Complete darkness"],1],
+[1,"What do some cities offer building owners?",["Free apartments","Travel discounts","Financial incentives"],2],
+[1,"What is the main purpose of rooftop gardens?",["Using unused building surfaces","Replacing all public parks","Increasing building prices"],0],
+[1,"Which statement is supported by the passage?",["Rooftop gardens have no disadvantages","Installation may be expensive","All buildings are suitable"],1],
+[1,"The word 'densely' is closest in meaning to:",["Heavily populated","Completely empty","Recently constructed"],0],
+[1,"What can vegetation do during heavy storms?",["Increase rainfall","Absorb some rainfall","Block all drainage"],1],
+[1,"Which benefit is related to food production?",["Growing food on rooftops","Reducing building height","Creating underground farms"],0],
+[1,"What is the writer's attitude towards rooftop gardens?",["Entirely negative","Uninterested","Generally positive but realistic"],2],
+[1,"What is the passage mainly about?",["The history of architecture","The benefits and limitations of rooftop gardens","The cost of city transport"],1],
+
+[2,"What were public libraries traditionally associated with?",["Sports facilities","Books and quiet study","Commercial businesses"],1],
+[2,"Why were libraries important to some people?",["They provided affordable access to information","They offered free accommodation","They replaced schools"],0],
+[2,"Which digital resource is mentioned?",["Online journals","Video games","Travel advertisements"],0],
+[2,"Why do physical libraries remain valuable for students?",["They provide quiet study spaces","They guarantee employment","They eliminate examinations"],0],
+[2,"What are collaborative areas designed for?",["Sleeping","Working together","Storing old books"],1],
+[2,"Which activity may libraries organise?",["Car manufacturing","Language classes","Professional sports"],1],
+[2,"What is one major challenge facing libraries?",["Too many visitors","Funding","Excessive rainfall"],1],
+[2,"Why might younger visitors avoid libraries?",["They dislike education","They prefer digital information","They cannot borrow books"],1],
+[2,"What should successful libraries combine?",["Traditional services and modern facilities","Only printed books","Entertainment and shopping"],0],
+[2,"The word 'essential' is closest in meaning to:",["Unnecessary","Optional","Very important"],2],
+[2,"What can community programmes strengthen?",["Local relationships","Building foundations","Internet speed"],0],
+[2,"What may determine libraries' future success?",["The number of chairs","Their ability to meet changing needs","Their location alone"],1],
+[2,"What is the main idea of the passage?",["Libraries are becoming irrelevant","Libraries are adapting to modern society","Printed books are disappearing completely"],1],
+
+[3,"What does the passage describe as a limited resource?",["Human attention","Electricity","Internet access"],0],
+[3,"What can notifications cause?",["Improved memory automatically","Interruptions","Longer working hours"],1],
+[3,"What may happen when people repeatedly switch tasks?",["Efficiency may decrease","Concentration always improves","Work becomes unnecessary"],0],
+[3,"How does the writer view technology?",["Always harmful","Completely unnecessary","Its effects depend on its use"],2],
+[3,"What is focused work?",["Working with many interruptions","A period of uninterrupted concentration","Avoiding all educational materials"],1],
+[3,"Which environmental factor can affect concentration?",["Building colour only","Noise","The number of books owned"],1],
+[3,"What can a suitable environment support?",["Effective learning","Permanent memory loss","Constant interruptions"],0],
+[3,"What does 'sustained' most nearly mean?",["Brief","Continuous over time","Accidental"],1],
+[3,"According to the passage, what should people understand?",["Their own habits","Every online advertisement","All technological inventions"],0],
+[3,"What is NOT suggested as a solution?",["Disabling unnecessary notifications","Organising activities","Increasing interruptions"],2],
+[3,"What is the central argument of the passage?",["Technology must be eliminated","Concentration depends on several factors","People cannot concentrate anymore"],1],
+[3,"What does the author suggest about screen time?",["Reducing it is the only solution","It is completely irrelevant","Managing attention requires more than reducing it"],2],
+[3,"What is the tone of the passage?",["Balanced and informative","Angry and emotional","Humorous"],0],
+[3,"Which title best summarises the passage?",["The History of Computers","Attention and Concentration in a Digital World","Why Libraries Need More Books"],1]
+].map((q, i) => ({ n: i + 1, passage: q[0], text: q[1], options: q[2], correct: q[3] }));
+
+let readingSeconds = 3600;
+let readingInterval = null;
+let readingSubmitted = false;
+let readingAnswers = {};
+try { readingAnswers = JSON.parse(store.get("zenReadingAnswers", "{}")) || {}; } catch(e){ readingAnswers = {}; }
+
+function startReading(){
+  if (readingSubmitted) resetReading();
+  $("readingIntro").style.display = "none";
+  $("readingResult").innerHTML = "";
+  $("readingExam").style.display = "block";
+
+  let html = "";
+  readingPassages.forEach((p, index) => {
+    const qs = readingQuestions.filter(q => q.passage === index + 1);
+    const first = qs[0].n, last = qs[qs.length - 1].n;
+    html += `
+      <div class="card section">
+        <div class="eyebrow">PASSAGE ${index + 1}</div>
+        <h2>${escapeHtml(p.title)}</h2>
+        <p style="white-space:pre-line;line-height:1.85;margin-top:10px">${escapeHtml(p.text)}</p>
+      </div>
+      <div class="card section">
+        <h3>Questions ${first}–${last}</h3>
+        ${qs.map(q => `
+          <div class="question" id="rq${q.n}">
+            <b>${q.n}. ${escapeHtml(q.text)}</b>
+            ${q.options.map((option, i) => `
+              <label>
+                <input type="radio" name="rq${q.n}" value="${i}"
+                  ${readingAnswers[q.n] === i ? "checked" : ""}
+                  onchange="saveReadingAnswer(${q.n},${i})">
+                ${String.fromCharCode(65 + i)}. ${escapeHtml(option)}
+              </label>`).join("")}
+          </div>`).join("")}
+      </div>`;
+  });
+  $("readingQuestions").innerHTML = html;
+
+  updateReadingProgress();
+  readingSeconds = 3600;
+  renderReadingTimer();
+  clearInterval(readingInterval);
+  readingInterval = setInterval(() => {
+    readingSeconds--;
+    renderReadingTimer();
+    if (readingSeconds <= 0){
+      clearInterval(readingInterval);
+      finishReading();
+    }
+  }, 1000);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function saveReadingAnswer(q, value){
+  readingAnswers[q] = value;
+  store.set("zenReadingAnswers", JSON.stringify(readingAnswers));
+  updateReadingProgress();
+}
+
+function updateReadingProgress(){
+  const count = Object.keys(readingAnswers).length;
+  $("readingAnswered").textContent = count + " / 40 answered";
+  $("readingProgress").style.width = (count / 40 * 100) + "%";
+}
+
+function renderReadingTimer(){
+  const s = Math.max(readingSeconds, 0);
+  $("readingTimer").textContent = fmt(s);
+}
+
+function readingBand(score){
+  return score >= 39 ? 9 : score >= 37 ? 8.5 : score >= 35 ? 8 : score >= 33 ? 7.5 :
+         score >= 30 ? 7 : score >= 27 ? 6.5 : score >= 23 ? 6 : score >= 19 ? 5.5 :
+         score >= 15 ? 5 : score >= 13 ? 4.5 : score >= 10 ? 4 : 3.5;
+}
+
+function finishReading(){
+  if (readingSubmitted) return;
+
+  const unanswered = 40 - Object.keys(readingAnswers).length;
+  if (unanswered > 0 && readingSeconds > 0){
+    if (!confirm("You have " + unanswered + " unanswered questions. Submit anyway?")) return;
+  }
+
+  readingSubmitted = true;
+  clearInterval(readingInterval);
+
+  const score = readingQuestions.filter(q => readingAnswers[q.n] === q.correct).length;
+  const band = readingBand(score);
+
+  // Mark each question as correct / incorrect and show the right answer
+  readingQuestions.forEach(q => {
+    const box = $("rq" + q.n);
+    if (!box) return;
+    box.querySelectorAll("input").forEach(i => i.disabled = true);
+    const ok = readingAnswers[q.n] === q.correct;
+    box.style.borderColor = ok ? "#3aa876" : "#c25b6a";
+    const note = document.createElement("div");
+    note.className = "tiny";
+    note.style.marginTop = "6px";
+    note.textContent = ok
+      ? "✓ Correct"
+      : "✗ Correct answer: " + String.fromCharCode(65 + q.correct) + ". " + q.options[q.correct];
+    box.appendChild(note);
+  });
+
+  $("readingResult").innerHTML = `
+    <div class="card section">
+      <div class="eyebrow">YOUR RESULT</div>
+      <h2>Reading Results</h2>
+      <div class="stat-num">${score}/40</div>
+      <h3>Estimated band: ${band.toFixed(1)}</h3>
+      <p class="muted">${40 - score} incorrect or unanswered questions.</p>
+      <p class="tiny">This is an approximate practice conversion, not an official IELTS score.</p>
+      <div class="toolbar">
+        <button class="primary" style="margin-top:0" onclick="resetReading()">Try again ↻</button>
+        <button class="secondary" onclick="window.scrollTo({top:document.getElementById('readingQuestions').offsetTop,behavior:'smooth'})">Review answers</button>
+      </div>
+    </div>`;
+  $("readingExam").insertBefore($("readingResult"), $("readingExam").firstChild);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  completed();
+}
+
+function resetReading(){
+  clearInterval(readingInterval);
+  readingSeconds = 3600;
+  readingSubmitted = false;
+  readingAnswers = {};
+  store.del("zenReadingAnswers");
+  $("readingResult").innerHTML = "";
+  $("readingQuestions").innerHTML = "";
+  $("readingExam").style.display = "none";
+  $("readingIntro").style.display = "block";
+  $("readingProgress").style.width = "0%";
+  updateReadingProgress();
+  renderReadingTimer();
+  // keep #readingResult in the page (outside exam) for the next run
+  $("readingIntro").parentNode.insertBefore($("readingResult"), $("readingExam"));
+}
+
+/* ===== Reading Test 2 (access-code protected) ===== */
+const R2_CODE = "zen123";
+
+const r2Passages = [
+{
+ title:"Reading Passage 1 — The Olmec and their great stone heads",
+ note:"You should spend about 20 minutes on Questions 1–13.",
+ paras:[
+ ["","The Olmec civilisation thrived in what is today eastern Mexico, along the coast of the Gulf of Mexico, from 1200 to 400 BC. The Olmec was the first major culture in Mesoamerica, a geographical area including Mexico and Central America. As in many ancient societies, the majority of the Olmec population laboured in the fields producing crops, while some spent their days fishing in the rivers. But the Olmec also developed cities – powerful population centres with political and cultural significance and influence – as early as 1200 BC. They were great traders who maintained contacts with other societies in the area. They traded their finely made masks and small statues, in return for materials such as semi-precious stones, crocodile skins, sea shells, sharks' teeth, and brightly coloured feathers, as well as basic necessities like salt. Their skill as traders helped spread their culture to different contemporary civilisations and to several later related civilisations such as the Aztecs and the Maya."],
+ ["","Despite the influence the Olmec had, their great city of La Venta went into sharp decline around 400 BC. Soon after this, other Olmec population centres disappeared and much of the Olmec civilisation along with them. The once impressive cities were swallowed up by surrounding jungle, not to be seen again for thousands of years. Why the Olmec vanished so rapidly remains a mystery. It may have been due to changes in the climate because the Olmec were dependent on a few basic crops, and climate change could have seriously affected their harvests. Human actions, such as warfare, over-farming or deforestation may also have played a role in the Olmec's decline."],
+ ["","The Olmec were extremely talented artists, and their most lasting artistic contribution was without doubt the enormous sculpted stone heads they created. Most of the heads were buried and forgotten for nearly 3,000 years until the first excavation of a head by Europeans in 1871, with the last one being unearthed in 1994. Seventeen Olmec great stone heads have been found in four Olmec cities: San Lorenzo, La Venta, Tres Zapotes and La Cobata. It is almost impossible to pinpoint the exact dates when the heads were made. The San Lorenzo heads were almost certainly all completed before 900 BC because that city went into steep decline at that time. Others are even more difficult to date; an examination of the head at La Cobata indicates it was never actually finished, and the heads at Tres Zapotes were removed from their original locations before their historical context could be documented."],
+ ["","The round face of each stone head with its characteristic wide, flat nose and full lips makes the heads readily identifiable. Several of the heads are taller than an average adult human male. The largest stands about three metres tall and weighs an estimated 40 tonnes. Each head is generally flattened at the back and not carved all the way around – they are meant to be viewed from the front and sides. Some tiny remains of colour on one of the San Lorenzo heads indicate that some may once have been painted."],
+ ["","The creation of these heads was a significant undertaking. The basalt stone boulders and blocks used to create the heads came from mountains located as far as 100 kilometres away from where they were displayed. Archaeologists suggest this involved a laborious process of slowly moving the stones, using a combination of manpower and, when possible, rafts on rivers. Once the stones reached a workshop, they would have been shaped using only crude tools such as stone hammers. The Olmec did not have metal tools, which makes the sculptures all the more remarkable. Once the heads were ready, they were put into position, although it is possible that they were occasionally moved to create scenes together with other Olmec sculptures."],
+ ["","The exact meaning of the great heads has been lost to time, but over the years there have been several theories. At one time, many archaeologists felt their sheer size suggested they represented gods. Other archaeologists argued that the helmet or cap on each of the heads looks like the headdress worn by players in an ancient game the Olmec played with rubber balls. Most archaeologists today, however, have come to believe that the heads actually represent Olmec rulers. Part of the evidence for this is the fact that each of the faces has a distinct human look and personality, suggesting they represented real individuals of great power and importance."],
+ ["","The Olmec left behind other stone carvings, small and large, including thrones and statues. There are also a few surviving wooden carvings and paintings in nearby caves. Nevertheless, the most striking examples of Olmec art are the great heads, and they have taught researchers a great deal about the ancient Olmec people. Their greatest value today, however, is probably artistic. The sculptures are truly amazing and inspirational and a popular attraction at the museums where they are housed. Most of them are in regional museums close to where they were found, while two are in Mexico City. In addition, reproductions have been made and can be seen in museums around the world."]
+ ]
+},
+{
+ title:"Reading Passage 2 — The Return of the Black-footed Ferret",
+ note:"The rise, fall, and rise of one of North America's rarest mammals.",
+ paras:[
+ ["A","The black-footed ferret (Mustela nigripes) is a small carnivorous mammal, similar in length to a domestic cat, and is the only ferret species native to North America. For at least 100,000 years they lived in an area that extended almost uninterrupted from southern Canada to northern Mexico. But numbers fell dramatically throughout the 19th and 20th centuries, to such an extent that the black-footed ferret was declared 'possibly extinct'. Then, almost miraculously, it returned from the dead."],
+ ["B","Within the genus Mustela, the ferret belongs to the subgenus Putorius, of which there are only three extant species: the European polecat; the Siberian polecat; and the black-footed ferret. The European polecat lives in open forests and meadows, and is thought to be the ancestor of the domestic ferret. The Siberian polecat looks more similar to the black-footed ferret, and leads a similar life on open grasslands and semidesert regions across Russia, China and Siberia."],
+ ["C","Ferrets probably evolved in Europe between three and four million years ago, and dispersed into North America across an ice-age land bridge at least two million years ago. They then advanced south-eastward to the Great Plains through ice-free passageways. The black-footed ferret's history in North America is inextricably linked to the creature which became almost its sole prey – the prairie dog. These small rodents are a type of ground squirrel which live in networks of underground tunnels, known as burrows. The black-footed ferret's short legs and long, slim body make it superbly adapted for life in the burrow systems of its prey."],
+ ["D","Spending virtually all their time underground, black-footed ferrets have always been elusive. Ferrets are never mentioned in accounts of the early explorers or pioneers who crossed the Great Plains by wagon train during the early to mid-1800s. They were, however, occasionally listed in records kept by fur companies in the upper Missouri River basin during that period. Black-footed ferrets were not officially recognized by scientists until 1851, when a description and drawing of one featured in a book by the renowned naturalist John James Audubon and Reverend John Bachman. For over two decades, no other specimens were seen, and scientists even began to question their existence. Then, in 1874, a Dr Elliott Coues issued a request for specimens through the popular magazine The American Sportsman, and was soon rewarded. With these he was able to add to Audubon's description, and confirm the existence of the black-footed ferret."],
+ ["E","In the decades that followed, European settlement across North America changed the landscape dramatically, with vast areas being transformed into crop and grazing land. As agriculture and ranching expanded, the black-footed ferret's main prey, the prairie dog, became a target for extermination, and was eventually eradicated from 98% of its original range. The result was devastating for black-footed ferret populations throughout the continent. Even today, the prairie dog is still trapped and poisoned, because ranchers believe that it competes with livestock for grass - a notion that belies recent research showing that prairie dogs and cattle feed on different plants."],
+ ["F","As late as the 1950s, black-footed ferrets were still thought to occur in low densities throughout most of their historic range. However, by the 1960s, the only known population was a small colony in south-western South Dakota. In 1967, the US Fish and Wildlife Service classified the black-footed ferret as an endangered species, and in 1974 the South Dakota colony disappeared. Finally, in January 1979, the last ferret in a captive-breeding programme died - making the black-footed ferret the first mammal to be declared extinct in the Northern Hemisphere in the 20th century."],
+ ["G","But that was not the end of the story. In 1981, a farm dog called Shep carried an odd-looking creature to its owner's ranch house in Meeteetse, Wyoming. The rancher put the carcass in his fridge and alerted state officials. The dog had found a black-footed ferret - which led to efforts again being made to save the species. An intensive search in the region led to the discovery of a 130-strong population. This wild colony thrived for a while, but disaster struck again and the number of animals was drastically reduced by the disease distemper - probably contracted from domestic dogs. In 1985, in a final bid to save the species, the remaining 18 individuals in the colony were trapped for a new captive-breeding programme. This project was successful, and there are now more than 2,000 black-footed ferrets in captivity across the US and Canada."],
+ ["H","A reintroduction programme began in 1991. Before they can be reintroduced into their natural habitat, captive ferrets have to learn to hunt and escape from predators. They are first held in pens on the prairie, where they are fed prairie dog meat. Once the ferrets associate these animals with food, keepers unleash live prey into the pens, and they soon realise that they must hunt or go hungry. Then, to get the ferrets used to living underground, they have to be tempted into the holes with food."],
+ ["I","Reintroduction programmes are now underway across central USA, but there is one location that is key. The Janos area on the US-Mexico border is the obvious place to reactivate the continent's wild black-footed ferret population, being one of the most important remaining grassland ecosystems in the Americas, and home to an abundance of prairie dogs. At the last report, the future of the black-footed ferret finally looks promising."]
+ ]
+},
+{
+ title:"Reading Passage 3 — Marine mammals exhibit their ingenuity",
+ note:"Dolphins use \"tools\" to help hunt for food. (*sponge: a simple sea animal that lives attached to rocks and has a soft, porous body)",
+ paras:[
+ ["","In the deep, clear channels of Australia's Shark Bay, bottlenose dolphins have discovered tools, raising questions about the origins of intelligent behavior, the nature of learning, and the birth of technology. There, dolphins in one extended family routinely use sponges* to protect their noses as they forage for fish hidden in the abrasive seafloor sand, according to Georgetown University scientists."],
+ ["","As far as the researchers can tell, a single dolphin may have invented the technique relatively recently and taught it to her offspring. The simple innovation dramatically changed their behavior, hunting habits, and social life, the researchers found. Those that adopted it became loners who spent much more time hunting than others and dive more deeply in search of prey. The sponging dolphins teach the technique to all their young, but only the females seem to grasp the idea. “It is indisputably tool use,” says primate anthropologist Craig Stanford at the University of Southern California, an authority on animal cognition and behavior. For those seeking a glimpse of our own beginnings, the dolphins of Shark Bay offer a hint of the inventive impulse that occurred when our earliest ancestors first shaped destiny by fashioning implements with their hands."],
+ ["","Tool use of any sort among wild animals is rare, difficult to document reliably, and controversial. The line between instinct, ingenuity, and intelligence is easily blurred by wishful thinking, experts caution. Field observations often give rise to scholarly disputes. Even so, 10 primate species of monkeys and apes, along with 30 species of birds, are thought to use sticks, rocks, or leaves as tools."],
+ ["","In the first in-depth analysis of this natural dolphin behavior, marine biologist and psychologist Dr. Janet Mann at Georgetown University and her colleagues found that the dolphins of Shark Bay use their makeshift hunting masks more often than any other species uses tools, except human beings."],
+ ["","The curious hunting habit was first observed by a local fisherman who reported to marine biologists that he had seen a dolphin with an odd growth on its nose. Monitoring its movements through the bay’s unusually clear waters, researchers soon discovered that the dolphin was actually balancing a conical basket sponge on its nose."],
+ ["","At first, it was not evident what the dolphin was doing with a sponge. Observing from a small boat, Dr. Mann and her colleagues eventually identified 41 dolphins who regularly used sponges to hunt, cataloging 1,295 dives in which they surfaced with sponges on their snouts. Researchers were startled to realize that the dolphins of Shark Bay employed one living creature as a tool to help hunt another."],
+ ["","Not any basket sponge would do, the researchers soon learned. The dolphins might search for 10 minutes to locate one with the right conical shape to cap their nose, tear it free of its mooring, and then carry it to a preferred hunting ground along channels between eight meters and 13 meters deep. “You can see that they are scattering the sand gently as they go along,” says Dr. Mann. “When they startle a fish out of the sand, they immediately drop the sponge and go after it.”"],
+ ["","“They return to retrieve the sponge and pick up the hunt again, repeating the pattern. They really use these sponges as a foraging tool,” says dolphin biologist Maddalena Bearzi, president of the Ocean Conservation Society of Los Angeles. “They discovered it could create an advantage in their foraging technique, and they pass it from generation to generation.” However, among the hundreds of dolphins living in this bay, only a few dozen use sponges to keep from scraping their noses, and that offered researchers an opportunity to compare creatures that use tools to others of the same species that do not."],
+ ["","Although these dolphins all appear to be related, researchers at the University of New South Wales suggest that nurture, not nature, is the reason these dolphins use tools, ruling out genetic explanations for the behavior. Instead, they are convinced that the use of sponges is passed from one generation to the next through imitation. Among bottlenose dolphins, mothers nurse their young for up to eight years, ample time for calves to absorb their mother’s hunting tricks by observation. “This is an example of culture among these animals,” says Dr. Bearzi. “This is part of the reason it is so important.”"],
+ ["","So far, almost all of the dolphin spongers have proved to be female. “The sex difference is really striking,” Dr. Mann says. “I don’t know of another species where it is so dramatic.” Of the sponging offspring, only the daughters could be seen still sponging once they reached maturity. The sons tried it but almost always abandoned it. Male dolphins rarely play a role in child-rearing and tend to fish in packs."],
+ ["","For Dr. Mann, the discovery that dolphins, too, are tool users adds an unexpected dimension to the history of innovation, shedding new light on animal intelligence. Clever mimics and fast learners, dolphins have unusually large brains—four times the size of a chimpanzee’s and second only to humans in relative size. “It speaks to this whole issue of creativity and learning and brain size,” she says. “The number one question that drives me and others is: Why do dolphins have such big brains? What are they doing down there in the water that requires them to be so smart?”"]
+ ]
+}
+];
+
+// kind: tfng | yn | fill | match | mc.  ans for fill = list of accepted answers (lower case).
+const r2Groups = [
+{ p:1, title:"Questions 1–6", kind:"tfng",
+  instr:"Do the following statements agree with the information given in Reading Passage 1? Choose TRUE if the statement agrees with the information, FALSE if it contradicts the information, NOT GIVEN if there is no information on this.",
+  items:[
+   {n:1,text:"Many Olmec people were farmers.",ans:"TRUE"},
+   {n:2,text:"The Olmec established a trading network based on river transport.",ans:"NOT GIVEN"},
+   {n:3,text:"Some of the cultural practices of the Olmec were adopted by the Aztecs.",ans:"TRUE"},
+   {n:4,text:"La Venta was the last Olmec city to go into decline.",ans:"FALSE"},
+   {n:5,text:"The Olmec grew a large variety of agricultural products before their civilisation vanished.",ans:"FALSE"},
+   {n:6,text:"The Olmec fought many battles with enemies from neighbouring areas.",ans:"NOT GIVEN"}
+  ]},
+{ p:1, title:"Questions 7–13", kind:"fill",
+  instr:"Complete the notes below. Write ONE WORD ONLY from the passage for each answer.",
+  items:[
+   {h:"The Olmec heads"},
+   {h:"Discovery"},
+   {n:7,text:"the {} of the Olmec heads took place between 1871 and 1994",ans:["excavation"]},
+   {h:"Appearance"},
+   {text:"a San Lorenzo head had traces of colour"},
+   {h:"Creation"},
+   {n:8,text:"the basalt stone the heads are made from was taken from {} in distant locations",ans:["mountains"]},
+   {n:9,text:"the stones were moved by river on {} and also dragged by men",ans:["rafts"]},
+   {n:10,text:"the heads are a remarkable achievement since the Olmec did not have tools made of {}",ans:["metal"]},
+   {h:"Meaning"},
+   {n:11,text:"some archaeologists believed the {} of the heads indicated they represented gods",ans:["size"]},
+   {n:12,text:"other archaeologists thought the stone helmets were like those worn in an Olmec {}",ans:["game"]},
+   {n:13,text:"today's most widely accepted theory is that the heads depict Olmec {}",ans:["rulers"]},
+   {h:"Importance"},
+   {text:"reproductions of the Olmec heads are now displayed internationally"}
+  ]},
+{ p:2, title:"Questions 14–16", kind:"fill",
+  instr:"Complete the sentences below. Choose NO MORE THAN TWO WORDS from the passage for each answer.",
+  items:[
+   {n:14,text:"The black-footed ferret shares most characteristics with the {}.",ans:["siberian polecat","the siberian polecat"]},
+   {n:15,text:"North American ferrets are thought to have originally come from {}.",ans:["europe"]},
+   {n:16,text:"The {} is the black-footed ferret's primary source of food.",ans:["prairie dog","prairie dogs"]}
+  ]},
+{ p:2, title:"Questions 17–22", kind:"match",
+  instr:"Match each event with the correct date, A–H.",
+  list:[["A","1851"],["B","1874"],["C","1967"],["D","1974"],["E","1979"],["F","1981"],["G","1985"],["H","1991"]],
+  items:[
+   {n:17,text:"An appeal for evidence of black-footed ferrets was published",ans:"B"},
+   {n:18,text:"A scheme for releasing captive-born black-footed ferrets into the wild was launched",ans:"H"},
+   {n:19,text:"The black-footed ferret first appeared in a scientific work",ans:"A"},
+   {n:20,text:"The discovery of a single black-footed ferret led to renewed hope for the species",ans:"F"},
+   {n:21,text:"North America's last wild-born black-footed ferrets were taken into captivity",ans:"G"},
+   {n:22,text:"Efforts to save the black-footed ferret were officially announced as having failed",ans:"E"}
+  ]},
+{ p:2, title:"Questions 23–26", kind:"match",
+  instr:"Reading Passage 2 has nine paragraphs, A–I. Which paragraph contains the following information?",
+  list:"ABCDEFGHI".split("").map(c=>[c,"Paragraph "+c]),
+  items:[
+   {n:23,text:"reasons for the sharp decrease in black-footed ferret populations",ans:"E"},
+   {n:24,text:"the procedure by which black-footed ferrets are taught to survive in the wild",ans:"H"},
+   {n:25,text:"mention of doubts about whether there was such an animal as a black-footed ferret",ans:"D"},
+   {n:26,text:"reference to a site which is ideal for the release of black-footed ferrets into the wild",ans:"I"}
+  ]},
+{ p:3, title:"Questions 27–30", kind:"yn",
+  instr:"Do the following statements agree with the claims of the writer in Reading Passage 3? Choose YES if the statement agrees with the claims of the writer, NO if it contradicts the claims of the writer, NOT GIVEN if it is impossible to say what the writer thinks about this.",
+  items:[
+   {n:27,text:"Researchers believe that the use of sponges for hunting may have originated with one female dolphin's experimentation.",ans:"YES"},
+   {n:28,text:"Research into tool use by dolphins can help us understand the origins of the use of tools by humans.",ans:"YES"},
+   {n:29,text:"There is general agreement amongst researchers on the relationship of tool use amongst animals and animal intelligence.",ans:"NO"},
+   {n:30,text:"Dr. Mann's analysis of dolphin behaviour has been criticised by some other scientists.",ans:"NOT GIVEN"}
+  ]},
+{ p:3, title:"Questions 31–35", kind:"mc",
+  instr:"Choose the correct letter, A, B, C or D.",
+  items:[
+   {n:31,text:"Some bottlenose dolphins in Shark Bay use sponges",opts:["to attract fish.","to avoid getting hurt.","to supplement their diet.","as a form of decoration."],ans:"B"},
+   {n:32,text:"The use of sponges by bottlenose dolphins results in their",opts:["living longer.","attracting more mates.","becoming more isolated.","becoming more aggressive."],ans:"C"},
+   {n:33,text:"The Shark Bay fisherman mentioned in the passage",opts:["provided an explanation for the dolphins' hunting habits.","made numerous observations of the dolphins in Shark Bay.","notified the media about dolphins balancing sponges on their noses.","thought the sponge was permanently attached to the dolphin's nose."],ans:"D"},
+   {n:34,text:"The dolphins sometimes take some time to find a sponge because",opts:["some sponges are too heavy.","sponges are quite rare in Shark Bay.","they are only satisfied with sponges that fit well.","they have individual preferences for types of sponges."],ans:"C"},
+   {n:35,text:"The fact that only a few dozen Shark Bay dolphins use sponges in this way allowed researchers to",opts:["investigate different behaviours within one species.","track individual members of a species.","decide whether the behaviour was tool use or not.","explain the purpose for the behaviour."],ans:"A"}
+  ]},
+{ p:3, title:"Questions 36–40", kind:"match",
+  instr:"Complete each sentence with the correct ending, A–H, below.",
+  list:[["A","is more frequent amongst female dolphins."],["B","is possibly linked to a physical characteristic."],["C","is only possible in salt water."],["D","is more typical of male dolphins."],["E","is evidence of a dolphin's use of sound."],["F","is a threat to commercial fishing."],["G","is the most likely way that sponge use is learned."],["H","is not accepted by investigators."]],
+  items:[
+   {n:36,text:"A genetic explanation for the dolphins' use of sponges",ans:"H"},
+   {n:37,text:"Observation of the behaviour of their mothers",ans:"G"},
+   {n:38,text:"The continued use of sponges in adulthood",ans:"A"},
+   {n:39,text:"A tendency to hunt for fish in groups",ans:"D"},
+   {n:40,text:"The clever behaviour of the dolphins",ans:"B"}
+  ]}
+];
+
+const r2Items = r2Groups.flatMap(g => g.items.filter(i => i.n).map(i => ({...i, kind:g.kind})));
+
+/* Evidence phrases (exact text from the passages) + explanations, per question */
+const r2Info = {
+ 1:{ev:["the majority of the Olmec population laboured in the fields producing crops"],exp:"TRUE: matnda Olmec aholisining ko'pchiligi dalada ekin yetishtirgani aytilgan, ya'ni ko'p odam dehqon bo'lgan."},
+ 2:{ev:["They were great traders who maintained contacts with other societies in the area."],exp:"NOT GIVEN: Olmec yaxshi savdogar bo'lgani aytilgan, lekin savdo tarmog'i daryo transportiga asoslangani haqida hech narsa yo'q."},
+ 3:{ev:["Their skill as traders helped spread their culture to different contemporary civilisations and to several later related civilisations such as the Aztecs and the Maya."],exp:"TRUE: savdo orqali Olmec madaniyati keyingi sivilizatsiyalarga, shu jumladan Aztek va Mayyaga tarqalgan."},
+ 4:{ev:["went into sharp decline around 400 BC. Soon after this, other Olmec population centres disappeared"],exp:"FALSE: La Venta birinchi bo'lib tanazzulga uchragan, boshqa shaharlar undan keyin yo'qolgan. Demak u oxirgisi emas."},
+ 5:{ev:["the Olmec were dependent on a few basic crops"],exp:"FALSE: Olmec faqat bir nechta asosiy ekinga tayangan, ya'ni mahsulotlar xilma-xil bo'lmagan."},
+ 6:{ev:["Human actions, such as warfare, over-farming or deforestation may also have played a role"],exp:"NOT GIVEN: urush tanazzul sabablaridan biri bo'lishi mumkin deyilgan, lekin qo'shni dushmanlar bilan ko'p jang qilgani haqida ma'lumot yo'q."},
+ 7:{ev:["the first excavation of a head by Europeans in 1871, with the last one being unearthed in 1994"],exp:"excavation: boshlar 1871 dan 1994 gacha qazib olingan. 'Took place' o'rniga 'the excavation' otga mos keladi."},
+ 8:{ev:["The basalt stone boulders and blocks used to create the heads came from mountains located as far as 100 kilometres away"],exp:"mountains: bazalt tosh uzoqdagi tog'lardan keltirilgan."},
+ 9:{ev:["rafts on rivers"],exp:"rafts: toshlar imkon bo'lsa daryoda sollarda tashilgan."},
+ 10:{ev:["The Olmec did not have metal tools"],exp:"metal: Olmecda metall asboblar bo'lmagan, shuning uchun haykallar yanada ajoyib."},
+ 11:{ev:["their sheer size suggested they represented gods"],exp:"size: ba'zi arxeologlar boshlarning kattaligi ularning xudolarni tasvirlashini ko'rsatadi deb o'ylagan."},
+ 12:{ev:["players in an ancient game"],exp:"game: dubulg'a qadimgi koptok o'yini o'yinchilarining bosh kiyimiga o'xshatilgan."},
+ 13:{ev:["the heads actually represent Olmec rulers"],exp:"rulers: bugungi eng keng qabul qilingan nazariya bo'yicha boshlar Olmec hukmdorlarini tasvirlaydi."},
+ 14:{ev:["The Siberian polecat looks more similar to the black-footed ferret"],exp:"Siberian polecat: qora oyoqli ferretga eng o'xshashi Sibir bo'rsig'i (Siberian polecat)."},
+ 15:{ev:["Ferrets probably evolved in Europe between three and four million years ago, and dispersed into North America"],exp:"Europe: ferretlar Yevropada paydo bo'lib, keyin Shimoliy Amerikaga tarqalgan."},
+ 16:{ev:["the creature which became almost its sole prey – the prairie dog"],exp:"prairie dog: ferretning deyarli yagona o'ljasi dasht itlari (prairie dog) bo'lgan."},
+ 17:{ev:["in 1874, a Dr Elliott Coues issued a request for specimens through the popular magazine The American Sportsman"],exp:"B (1874): doktor Kuz jurnal orqali namunalarni so'rab murojaat e'lon qilgan."},
+ 18:{ev:["A reintroduction programme began in 1991."],exp:"H (1991): asirlikda tug'ilgan ferretlarni tabiatga qaytarish dasturi 1991 da boshlangan."},
+ 19:{ev:["Black-footed ferrets were not officially recognized by scientists until 1851, when a description and drawing of one featured in a book"],exp:"A (1851): ferret birinchi marta 1851 da Audubon va Bachman kitobida ilmiy tavsiflangan."},
+ 20:{ev:["The dog had found a black-footed ferret - which led to efforts again being made to save the species."],exp:"F (1981): it bitta ferretni topgan va bu turni qutqarishga yangi umid bergan."},
+ 21:{ev:["In 1985, in a final bid to save the species, the remaining 18 individuals in the colony were trapped for a new captive-breeding programme."],exp:"G (1985): oxirgi 18 ta yovvoyi ferret asirlikda ko'paytirish uchun ushlangan."},
+ 22:{ev:["Finally, in January 1979, the last ferret in a captive-breeding programme died"],exp:"E (1979): asirlikdagi oxirgi ferret o'lgan va tur yo'qolgan deb e'lon qilingan, ya'ni urinish muvaffaqiyatsiz tugagan."},
+ 23:{ev:["became a target for extermination, and was eventually eradicated from 98% of its original range"],exp:"E: sonining keskin kamayishi sababi dasht itlarini ommaviy yo'q qilish bo'lgan (E xatboshi)."},
+ 24:{ev:["captive ferrets have to learn to hunt and escape from predators"],exp:"H: ferretlarni tabiatda yashashga o'rgatish tartibi H xatboshida tasvirlangan."},
+ 25:{ev:["scientists even began to question their existence"],exp:"D: olimlar ferretning mavjudligiga shubha qila boshlagani D xatboshida."},
+ 26:{ev:["The Janos area on the US-Mexico border is the obvious place to reactivate the continent's wild black-footed ferret population"],exp:"I: Janos hududi ferretlarni tabiatga qo'yib yuborish uchun eng yaxshi joy deyilgan (I xatboshi)."},
+ 27:{ev:["a single dolphin may have invented the technique relatively recently and taught it to her offspring"],exp:"YES: bitta urg'ochi delfin usulni o'ylab topgan va bolalariga o'rgatgan bo'lishi mumkin."},
+ 28:{ev:["the dolphins of Shark Bay offer a hint of the inventive impulse that occurred when our earliest ancestors first shaped destiny by fashioning implements with their hands"],exp:"YES: delfinlar bizning ilk ajdodlarimiz asbob yasagan davrdan darak beradi, ya'ni tadqiqot insonda asbob ishlatish kelib chiqishini tushunishga yordam beradi."},
+ 29:{ev:["The line between instinct, ingenuity, and intelligence is easily blurred by wishful thinking, experts caution. Field observations often give rise to scholarly disputes."],exp:"NO: hayvonlarda asbob ishlatish munozarali va olimlar o'rtasida bahslar bor, demak umumiy kelishuv yo'q."},
+ 30:{ev:[],exp:"NOT GIVEN: matnda doktor Mann tahlili boshqa olimlar tomonidan tanqid qilingani haqida hech narsa aytilmagan."},
+ 31:{ev:["use sponges* to protect their noses","only a few dozen use sponges to keep from scraping their noses"],exp:"B: delfinlar burnini qirilishdan saqlash uchun, ya'ni shikastlanmaslik uchun shimgichdan foydalanadi."},
+ 32:{ev:["Those that adopted it became loners"],exp:"C: shimgichdan foydalangan delfinlar yolg'iz (loners) bo'lib qolgan, ya'ni yakkalanishgan."},
+ 33:{ev:["he had seen a dolphin with an odd growth on its nose"],exp:"D: baliqchi burundagi g'alati o'simta ko'rganini aytgan, ya'ni shimgichni burunga doimiy yopishgan deb o'ylagan."},
+ 34:{ev:["locate one with the right conical shape to cap their nose"],exp:"C: delfinlar burniga mos konussimon shimgich topguncha 10 daqiqagacha qidiradi, ya'ni faqat mos keladigani ularni qanoatlantiradi."},
+ 35:{ev:["that offered researchers an opportunity to compare creatures that use tools to others of the same species that do not"],exp:"A: faqat bir necha o'nlab delfin shimgich ishlatgani sababli olimlar bir tur ichidagi turli xatti-harakatlarni solishtira olgan."},
+ 36:{ev:["ruling out genetic explanations for the behavior"],exp:"H: tadqiqotchilar genetik tushuntirishni rad etgan, ya'ni tekshiruvchilar uni qabul qilmaydi."},
+ 37:{ev:["the use of sponges is passed from one generation to the next through imitation"],exp:"G: onalarini kuzatish orqali, ya'ni taqlid bilan o'rganish shimgich ishlatishning eng ehtimol yo'li."},
+ 38:{ev:["only the daughters could be seen still sponging once they reached maturity"],exp:"A: voyaga yetgach shimgich ishlatishda davom etganlar faqat urg'ochilar bo'lgan."},
+ 39:{ev:["Male dolphins rarely play a role in child-rearing and tend to fish in packs."],exp:"D: baliqni guruh bo'lib ovlash erkak delfinlarga xos."},
+ 40:{ev:["dolphins have unusually large brains","It speaks to this whole issue of creativity and learning and brain size"],exp:"B: delfinlarning aqlli xatti-harakati ularning katta miyasi bilan bog'liq bo'lishi mumkin."}
+};
+
+function r2ParaHtml(text){
+  const spans = [];
+  Object.keys(r2Info).forEach(n => {
+    r2Info[n].ev.forEach(ph => {
+      const s = text.indexOf(ph);
+      if (s >= 0) spans.push({ s, e: s + ph.length, n });
+    });
+  });
+  spans.sort((a, b) => a.s - b.s);
+  let out = "", pos = 0;
+  spans.forEach(sp => {
+    if (sp.s < pos) return; // skip overlaps
+    out += escapeHtml(text.slice(pos, sp.s));
+    out += `<mark class="r2m" data-q="${sp.n}">${escapeHtml(text.slice(sp.s, sp.e))}</mark>`;
+    pos = sp.e;
+  });
+  return out + escapeHtml(text.slice(pos));
+}
+
+function r2Hl(n){
+  const marks = document.querySelectorAll('.r2m[data-q="' + n + '"]');
+  if (!marks.length) return;
+  const on = !marks[0].classList.contains("on");
+  marks.forEach(m => m.classList.toggle("on", on));
+  if (on) marks[0].scrollIntoView({ behavior: "smooth", block: "center" });
+}
+function r2HlAll(on){
+  document.querySelectorAll(".r2m").forEach(m => m.classList.toggle("on", on));
+}
+
+let r2Seconds = 3600, r2Interval = null, r2Submitted = false, r2Ans = {};
+try { r2Ans = JSON.parse(store.get("zenR2Answers", "{}")) || {}; } catch(e){ r2Ans = {}; }
+
+function r2Show(){
+  const open = store.get("zenR2Unlocked", "") === "1";
+  $("r2Lock").style.display = open ? "none" : "block";
+  $("r2Main").style.display = open ? "block" : "none";
+}
+function r2Unlock(){
+  const v = $("r2Code").value.trim();
+  if (v === R2_CODE){
+    store.set("zenR2Unlocked", "1");
+    $("r2Code").value = "";
+    $("r2LockMsg").textContent = "";
+    r2Show();
+  } else {
+    $("r2LockMsg").textContent = "Incorrect code. Please try again.";
+  }
+}
+
+function r2Norm(s){ return String(s || "").toLowerCase().trim().replace(/\s+/g, " "); }
+
+function r2RenderItem(g, it){
+  if (it.h) return `<h3 style="margin:16px 0 4px;color:#c4b6ff">${escapeHtml(it.h)}</h3>`;
+  if (!it.n) return `<p class="muted" style="margin:4px 0 4px 18px">• ${escapeHtml(it.text)}</p>`;
+  const v = r2Ans[it.n];
+  const q = it.n;
+  if (g.kind === "fill"){
+    const parts = it.text.split("{}");
+    return `<div class="question" id="r2q${q}"><b>${q}.</b> ${escapeHtml(parts[0])}
+      <input type="text" style="display:inline-block;width:170px;padding:6px 10px" value="${escapeHtml(v || "")}" autocomplete="off"
+        oninput="r2Save(${q},this.value)">${escapeHtml(parts[1] || "")}</div>`;
+  }
+  if (g.kind === "match"){
+    return `<div class="question" id="r2q${q}"><b>${q}. ${escapeHtml(it.text)}</b>
+      <select style="max-width:220px;margin-top:8px" onchange="r2Save(${q},this.value)">
+        <option value="">Choose…</option>
+        ${g.list.map(l => `<option value="${l[0]}" ${v === l[0] ? "selected" : ""}>${l[0]}</option>`).join("")}
+      </select></div>`;
+  }
+  if (g.kind === "mc"){
+    return `<div class="question" id="r2q${q}"><b>${q}. ${escapeHtml(it.text)}</b>
+      ${it.opts.map((o, i) => { const L = String.fromCharCode(65 + i); return `<label><input type="radio" name="r2q${q}" value="${L}" ${v === L ? "checked" : ""} onchange="r2Save(${q},'${L}')">${L}. ${escapeHtml(o)}</label>`; }).join("")}
+    </div>`;
+  }
+  const opts = g.kind === "yn" ? ["YES","NO","NOT GIVEN"] : ["TRUE","FALSE","NOT GIVEN"];
+  return `<div class="question" id="r2q${q}"><b>${q}. ${escapeHtml(it.text)}</b>
+    ${opts.map(o => `<label><input type="radio" name="r2q${q}" value="${o}" ${v === o ? "checked" : ""} onchange="r2Save(${q},'${o}')">${o}</label>`).join("")}
+  </div>`;
+}
+
+function r2Start(){
+  if (r2Submitted) r2Reset();
+  $("r2Intro").style.display = "none";
+  $("r2Exam").style.display = "block";
+  $("r2Result").innerHTML = "";
+
+  let html = "";
+  r2Passages.forEach((p, idx) => {
+    html += `<div class="card section">
+      <div class="eyebrow">PASSAGE ${idx + 1}</div>
+      <h2>${escapeHtml(p.title)}</h2>
+      <p class="tiny" style="margin:6px 0 12px">${escapeHtml(p.note)}</p>
+      ${p.paras.map(pp => `<p style="line-height:1.85;margin:0 0 12px">${pp[0] ? `<b style="color:#c4b6ff">${pp[0]}</b>&nbsp; ` : ""}${r2ParaHtml(pp[1])}</p>`).join("")}
+    </div>`;
+    r2Groups.filter(g => g.p === idx + 1).forEach(g => {
+      html += `<div class="card section"><h3>${g.title}</h3><p class="muted" style="margin:6px 0 12px">${escapeHtml(g.instr)}</p>`;
+      if (g.kind === "match") {
+        html += `<div class="question" style="background:#0f1627"><b>List</b><div class="muted" style="margin-top:6px;line-height:1.8">${g.list.map(l => `<div><b>${l[0]}</b>&nbsp; ${escapeHtml(l[1])}</div>`).join("")}</div></div>`;
+      }
+      html += g.items.map(it => r2RenderItem(g, it)).join("") + `</div>`;
+    });
+  });
+  $("r2Body").innerHTML = html;
+
+  r2UpdateProgress();
+  r2Seconds = 3600;
+  $("r2Timer").textContent = fmt(r2Seconds);
+  clearInterval(r2Interval);
+  r2Interval = setInterval(() => {
+    r2Seconds--;
+    $("r2Timer").textContent = fmt(Math.max(r2Seconds, 0));
+    if (r2Seconds <= 0){ clearInterval(r2Interval); r2Finish(); }
+  }, 1000);
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function r2Save(n, val){
+  if (String(val).trim() === "") delete r2Ans[n]; else r2Ans[n] = val;
+  store.set("zenR2Answers", JSON.stringify(r2Ans));
+  r2UpdateProgress();
+}
+function r2UpdateProgress(){
+  const c = Object.keys(r2Ans).length;
+  $("r2Answered").textContent = c + " / 40 answered";
+  $("r2Progress").style.width = (c / 40 * 100) + "%";
+}
+
+function r2IsCorrect(it){
+  const a = r2Ans[it.n];
+  if (a === undefined) return false;
+  if (it.kind === "fill") return it.ans.includes(r2Norm(a));
+  return a === it.ans;
+}
+function r2AnsText(it){
+  return it.kind === "fill" ? it.ans[0] : it.ans;
+}
+
+function r2Finish(){
+  if (r2Submitted) return;
+  const un = 40 - Object.keys(r2Ans).length;
+  if (un > 0 && r2Seconds > 0){
+    if (!confirm("You have " + un + " unanswered questions. Submit anyway?")) return;
+  }
+  r2Submitted = true;
+  clearInterval(r2Interval);
+
+  let score = 0;
+  r2Items.forEach(it => {
+    const ok = r2IsCorrect(it);
+    if (ok) score++;
+    const box = $("r2q" + it.n);
+    if (!box) return;
+    box.querySelectorAll("input,select").forEach(x => x.disabled = true);
+    box.style.borderColor = ok ? "#3aa876" : "#c25b6a";
+    const note = document.createElement("div");
+    note.className = "tiny";
+    note.style.marginTop = "6px";
+    note.textContent = ok ? "✓ Correct" : "✗ Correct answer: " + r2AnsText(it);
+    box.appendChild(note);
+    const info = r2Info[it.n];
+    if (info){
+      const ex = document.createElement("div");
+      ex.className = "r2exp";
+      ex.textContent = "💡 " + info.exp;
+      box.appendChild(ex);
+      if (info.ev.length){
+        const btn = document.createElement("button");
+        btn.className = "secondary";
+        btn.style.cssText = "margin-top:8px;padding:6px 12px;font-size:12px";
+        btn.textContent = "🔍 Show in text";
+        btn.onclick = () => r2Hl(it.n);
+        box.appendChild(btn);
+      }
+    }
+  });
+
+  const band = readingBand(score);
+  $("r2Result").innerHTML = `
+    <div class="card section">
+      <div class="eyebrow">YOUR RESULT</div>
+      <h2>Reading Test 2 — Results</h2>
+      <div class="stat-num">${score}/40</div>
+      <h3>Estimated band: ${band.toFixed(1)}</h3>
+      <p class="muted">${40 - score} incorrect or unanswered questions.</p>
+      <p class="tiny">This is an approximate practice conversion, not an official IELTS score. Each question has an explanation and a “Show in text” button that highlights the evidence in yellow.</p>
+      <div class="toolbar"><button class="primary" style="margin-top:0" onclick="r2Reset()">Try again ↻</button><button class="secondary" onclick="r2HlAll(true)">🟨 Highlight all answers in text</button><button class="secondary" onclick="r2HlAll(false)">Clear highlights</button></div>
+    </div>`;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  completed();
+}
+
+function r2Reset(){
+  clearInterval(r2Interval);
+  r2Seconds = 3600; r2Submitted = false; r2Ans = {};
+  store.del("zenR2Answers");
+  $("r2Body").innerHTML = ""; $("r2Result").innerHTML = "";
+  $("r2Exam").style.display = "none";
+  $("r2Intro").style.display = "block";
+  r2UpdateProgress();
+}
+
+/* Init */
+$("essay").value = store.get("zenEssay", "");
+$("speakingAnswer").value = store.get("zenSpeaking", "");
+$("essay").dispatchEvent(new Event("input"));
+$("speakingAnswer").dispatchEvent(new Event("input"));
+setInterval(() => { sessionMinutes++; updateStats(); }, 60000);
+renderWords();
+showCard();
+updateStats();
+updateReadingProgress();
+r2Show();
+startTimer();
+</script>
+<script>
+
+/* ===== IELTS ZEN account + backend integration ===== */
+const ZEN_API = (localStorage.getItem('zenApiBase') || 'http://localhost:4000/api').replace(/\/+$/,'');
+let zenUser=null, zenHeartbeat=null;
+const zenToken=()=>localStorage.getItem('ielts_zen_token');
+const zenApi=async(path,options={})=>{const headers={'Content-Type':'application/json',...(options.headers||{})};if(zenToken())headers.Authorization='Bearer '+zenToken();const response=await fetch(ZEN_API+path,{...options,headers});const data=await response.json().catch(()=>({}));if(!response.ok)throw new Error(data.error||'API error '+response.status);return data;};
+const zenEsc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const zenDate=v=>v?new Date(v).toLocaleString():'—';
+function zenAuthError(message){$('zenAuthError').textContent=message||'';}
+function zenShowAuth(register=false){$('zenLoginForm').hidden=register;$('zenRegisterForm').hidden=!register;$('zenAuthTitle').textContent=register?'Create your account':'Welcome back';$('zenAuthHint').textContent=register?'Create a student account to save your learning progress.':'Sign in to access your personal IELTS workspace.';zenAuthError('');}
+$('zenShowRegister').addEventListener('click',()=>zenShowAuth(true));$('zenShowLogin').addEventListener('click',()=>zenShowAuth(false));
+$('zenLoginForm').addEventListener('submit',async e=>{e.preventDefault();zenAuthError('');try{const d=await zenApi('/auth/login',{method:'POST',body:JSON.stringify({identifier:$('zenIdentifier').value,password:$('zenPassword').value})});localStorage.setItem('ielts_zen_token',d.token);await zenEnter(d.user);}catch(err){zenAuthError(err.message);}});
+$('zenRegisterForm').addEventListener('submit',async e=>{e.preventDefault();zenAuthError('');try{const d=await zenApi('/auth/register',{method:'POST',body:JSON.stringify({fullName:$('zenFullName').value,username:$('zenUsername').value,email:$('zenEmail').value,password:$('zenNewPassword').value,targetBand:$('zenTarget').value})});localStorage.setItem('ielts_zen_token',d.token);await zenEnter(d.user);}catch(err){zenAuthError(err.message);}});
+async function zenEnter(user){zenUser=user;$('zenAuth').hidden=true;$('zenRoleNav').hidden=false;$('zenSignedAs').textContent=`${user.fullName} · ${user.role.toUpperCase()}`;const profile=document.querySelector('.profile');if(profile){profile.querySelector('.profile-name b').textContent=user.fullName;profile.querySelector('.profile-name small').textContent=`${user.role} · Target ${user.targetBand}`;profile.querySelector('.avatar').textContent=(user.fullName||'Z').trim()[0].toUpperCase();}
+ $('zenAdminPanel').hidden=user.role!=='admin';$('zenTeacherPanel').hidden=!['teacher','admin'].includes(user.role);$('zenStudentHistory').hidden=user.role!=='student';
+ if(user.role==='admin')await zenLoadAdmin();else if(user.role==='teacher')await zenLoadTeacher();else await zenLoadStudent();
+ clearInterval(zenHeartbeat);zenHeartbeat=setInterval(()=>zenApi('/auth/me').catch(()=>{}),45000);
+}
+async function zenLogout(){try{await zenApi('/auth/logout',{method:'POST'});}catch{}clearInterval(zenHeartbeat);localStorage.removeItem('ielts_zen_token');zenUser=null;$('zenRoleNav').hidden=true;$('zenAdminPanel').hidden=true;$('zenTeacherPanel').hidden=true;$('zenStudentHistory').hidden=true;$('zenAuth').hidden=false;zenShowAuth(false);}
+$('zenLogout').addEventListener('click',zenLogout);$('zenRefreshRole').addEventListener('click',()=>zenRefresh());
+async function zenRefresh(){if(!zenUser)return;if(zenUser.role==='admin')return zenLoadAdmin();if(zenUser.role==='teacher')return zenLoadTeacher();return zenLoadStudent();}
+async function zenLoadStudent(){try{const d=await zenApi('/student/dashboard');if(d.profile){$('stTargetBand').textContent=Number(d.profile.target_band).toFixed(1);$('stStreak').textContent=d.profile.streak_days||0;$('stStudyTime').textContent=Math.round(Number(d.profile.study_seconds||0)/60)+'m';}const rows=d.attempts||[];$('zenStudentAttempts').innerHTML=rows.map(a=>`<tr><td>${zenDate(a.created_at)}</td><td>${zenEsc(a.skill)}</td><td>${zenEsc(a.test_code)}</td><td>${a.score??'—'} / ${a.max_score??'—'}</td><td>${a.estimated_band??'—'}</td><td>${zenEsc(a.teacher_feedback||'—')}</td></tr>`).join('')||'<tr><td colspan="6">No test results yet.</td></tr>'; }catch(e){console.warn('Student dashboard:',e.message);}}
+async function zenLoadAdmin(){try{const [d,l]=await Promise.all([zenApi('/admin/overview'),zenApi('/admin/activity-logs')]);const s=d.stats||{};$('zenAdminStats').innerHTML=[['Students',s.total_students],['Online',s.online_students],['Teachers',s.total_teachers],['Blocked',s.blocked_students]].map(x=>`<div class="card"><div class="stat-top">${x[0]}</div><div class="stat-num">${x[1]??0}</div></div>`).join('');$('zenAdminUsers').innerHTML=(d.users||[]).map(u=>`<tr><td><b>${zenEsc(u.full_name)}</b><br><small>@${zenEsc(u.username)} · ${zenEsc(u.email)}</small></td><td>${zenEsc(u.role)}</td><td>${u.is_active?(u.is_online?'Online':'Active'):'Blocked'}</td><td>${zenDate(u.last_login_at)}</td><td>${zenDate(u.last_active_at)}</td><td>${u.total_attempts} / ${u.avg_band??'—'}</td><td><button data-zen-toggle="${u.id}" data-active="${!u.is_active}">${u.is_active?'Block':'Activate'}</button></td></tr>`).join('');$('zenAdminLogs').innerHTML=(l.logs||[]).map(x=>`<tr><td>${zenDate(x.created_at)}</td><td>${zenEsc(x.full_name||x.username||'—')}</td><td>${zenEsc(x.actor_role)}</td><td>${zenEsc(x.action_type)}</td><td>${zenEsc(x.description)}</td></tr>`).join('')||'<tr><td colspan="5">No activity recorded.</td></tr>';}catch(e){console.error(e);alert('Admin panel: '+e.message);}}
+$('zenCreateUser').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.currentTarget);try{await zenApi('/admin/users',{method:'POST',body:JSON.stringify(Object.fromEntries(f))});e.currentTarget.reset();await zenLoadAdmin();alert('Account created.');}catch(x){alert(x.message);}});
+$('zenAdminUsers').addEventListener('click',async e=>{const b=e.target.closest('[data-zen-toggle]');if(!b)return;try{await zenApi('/admin/users/'+b.dataset.zenToggle,{method:'PATCH',body:JSON.stringify({isActive:b.dataset.active==='true'})});await zenLoadAdmin();}catch(x){alert(x.message);}});
+async function zenLoadTeacher(){try{const [s,a]=await Promise.all([zenApi('/teacher/students'),zenApi('/teacher/attempts')]);$('zenTeacherStudents').innerHTML=(s.students||[]).map(u=>`<tr><td>${zenEsc(u.full_name)}</td><td>@${zenEsc(u.username)}</td><td>${u.target_band}</td><td>${u.is_active?(u.is_online?'Online':'Offline'):'Blocked'}</td><td>${zenDate(u.last_active_at)}</td></tr>`).join('')||'<tr><td colspan="5">No students assigned. Ask an admin to assign students.</td></tr>';$('zenTeacherAttempts').innerHTML=(a.attempts||[]).map(x=>`<tr><td>${zenEsc(x.student_name)}</td><td>${zenEsc(x.skill)}<br>${zenEsc(x.test_code)}</td><td>${zenDate(x.created_at)}</td><td>${x.score??'—'} / ${x.max_score??'—'}</td><td><input aria-label="Band" type="number" min="0" max="9" step="0.5" value="${x.estimated_band??''}" data-band="${x.id}"></td><td><input aria-label="Feedback" value="${zenEsc(x.teacher_feedback||'')}" data-feedback="${x.id}" placeholder="Feedback"></td><td><button data-review="${x.id}">Save</button></td></tr>`).join('')||'<tr><td colspan="7">No submissions yet.</td></tr>';}catch(e){console.error(e);alert('Teacher panel: '+e.message);}}
+$('zenTeacherAttempts').addEventListener('click',async e=>{const b=e.target.closest('[data-review]');if(!b)return;const id=b.dataset.review;try{await zenApi('/teacher/attempts/'+id+'/review',{method:'PATCH',body:JSON.stringify({estimatedBand:$(`[data-band="${id}"]`).value||null,teacherFeedback:$(`[data-feedback="${id}"]`).value})});alert('Review saved.');await zenLoadTeacher();}catch(x){alert(x.message);}});
+async function zenSaveAttempt({skill,testCode,score,maxScore,band,duration=0,answers={}}){if(!zenUser||zenUser.role!=='student')return;try{await zenApi('/student/attempts',{method:'POST',body:JSON.stringify({skill,testCode,score,maxScore,estimatedBand:band,durationSeconds:duration,submissionData:answers})});await zenLoadStudent();}catch(e){console.error('Could not save attempt:',e.message);}}
+// Wrap the existing test completion handlers; the original test logic and content remain intact.
+const zenOldFinishReading=window.finishReading;if(typeof zenOldFinishReading==='function')window.finishReading=function(){zenOldFinishReading();if(typeof readingQuestions!=='undefined'&&typeof readingAnswers!=='undefined'){const score=readingQuestions.filter(q=>readingAnswers[q.n]===q.correct).length;zenSaveAttempt({skill:'reading',testCode:'IELTS-ZEN-READING-1',score,maxScore:40,band:readingBand(score),duration:3600-Math.max(0,readingSeconds),answers:readingAnswers});}};
+const zenOldR2Finish=window.r2Finish;if(typeof zenOldR2Finish==='function')window.r2Finish=function(){zenOldR2Finish();if(typeof r2Ans!=='undefined'&&typeof r2Questions!=='undefined'){const score=r2Items.filter(it=>r2IsCorrect(it)).length;zenSaveAttempt({skill:'reading',testCode:'IELTS-ZEN-READING-2',score,maxScore:40,band:readingBand(score),duration:3600-Math.max(0,r2Seconds),answers:r2Ans});}};
+const zenOldCheckListening=window.checkListening;if(typeof zenOldCheckListening==='function')window.checkListening=function(){zenOldCheckListening();const a=document.querySelector('input[name="l1"]:checked')?.value==='Tuesday'?1:0;const b=document.querySelector('input[name="l2"]:checked')?.value==='Main entrance'?1:0;zenSaveAttempt({skill:'listening',testCode:'CAMPUS-ANNOUNCEMENT',score:a+b,maxScore:2,band:null,answers:{l1:a,l2:b}});};
+const zenOldSubmitMock=window.submitMock;if(typeof zenOldSubmitMock==='function')window.submitMock=function(){zenOldSubmitMock();const key={m1:'A',m2:'B',m3:'A'};let score=0;for(const k in key)if(document.querySelector(`input[name="${k}"]:checked`)?.value===key[k])score++;zenSaveAttempt({skill:'mock',testCode:'IELTS-ZEN-QUICK-MOCK',score,maxScore:3,answers:key});};
+// Record submitted Writing and Speaking drafts as teacher-reviewable attempts.
+const zenOldAddWord=window.addWord;if(typeof zenOldAddWord==='function')window.addWord=function(){const w=$('newWord')?.value.trim(),m=$('newMeaning')?.value.trim();zenOldAddWord();if(w&&m&&zenUser?.role==='student')zenApi('/student/vocabulary',{method:'POST',body:JSON.stringify({word:w,meaning:m,example:''})}).catch(e=>console.warn('Vocabulary sync:',e.message));};
+const zenOldSaveEssay=window.saveEssay;if(typeof zenOldSaveEssay==='function')window.saveEssay=function(){zenOldSaveEssay();const answer=$('essay')?.value||'';if(answer.trim())zenSaveAttempt({skill:'writing',testCode:'WRITING-DRAFT',answers:{answer}});};
+const zenOldSaveSpeaking=window.saveSpeaking;if(typeof zenOldSaveSpeaking==='function')window.saveSpeaking=function(){zenOldSaveSpeaking();const answer=$('speakingAnswer')?.value||'';if(answer.trim())zenSaveAttempt({skill:'speaking',testCode:'SPEAKING-PRACTICE',answers:{answer}});};
+// Resume an authenticated session automatically.
+(async()=>{if(zenToken()){try{const d=await zenApi('/auth/me');await zenEnter(d.user);}catch{localStorage.removeItem('ielts_zen_token');$('zenAuth').hidden=false;}}})();
+
+</script>
+</body>
+</html>
